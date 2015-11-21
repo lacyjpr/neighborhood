@@ -8,6 +8,9 @@ function initMap() {
 	});
 }
 
+function googleError() {
+	document.getElementById('map').innerHTML = "<h1>Google Maps is not loading</h1>";
+}
 
 var ViewModel = function(){
 	var self = this;
