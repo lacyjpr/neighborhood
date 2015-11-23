@@ -15,10 +15,10 @@
 
 	<body>
 		<div id="map"></div>
-		<input id="input" type="search" placeholder="search by name" data-bind="textInput: userInput>
+		<!--<input id="input" type="search" placeholder="search by name" data-bind="textInput: userInput">-->
 		<div id="list-holder">
 			<ul id="list-view" data-bind="foreach: venues">
-				<li id="list-name" data-bind="text: name, click: $parent.openInfoWindow"></li>
+				<li id="list-name" data-bind="text: name"></li>
 			</ul>
 		</div>
 

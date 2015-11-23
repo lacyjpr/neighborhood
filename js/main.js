@@ -1,5 +1,7 @@
 var locations = [];
 
+
+
 var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -23,6 +25,16 @@ var ViewModel = function(){
 	"use strict";
 	var self = this;
 
+	self.venues = ko.observableArray();
+	console.dir(self.venues);
+
+	function getNames(data) {
+		locations.push(data.response.venues);
+		for (var i = 0; i < locations[0].length; i++) {
+			self.venues.push(locations[0][i]);
+			}
+		};
+
 	var fourSquareUrl = 'https://api.foursquare.com/v2/venues/search?client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815&near=Newport, OR&radius=7500&query=coffee';
 	$.ajax({
 		url: fourSquareUrl,
@@ -30,11 +42,12 @@ var ViewModel = function(){
 		dataType: "json",
 		success: function (data) {
 			locations.push(data.response.venues);
+			console.log(locations);
+
 
 			// Set Markers with data
 			setMarkers(data);
-			getNames(data)
-			console.log(locations);
+			getNames(data);
 		}
 	});
 
@@ -53,12 +66,15 @@ var ViewModel = function(){
 		marker.setMap(map);
 		});
 
-	function getNames(data) {};
+
+
+
+	};
 
 
 	}
 	}
-}
+
 ko.applyBindings(new ViewModel());
 
 
