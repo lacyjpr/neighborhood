@@ -2,13 +2,16 @@ var locations = [];
 
 var map;
 function initMap() {
-	var mapOptions = {
-		center: {lat: 44.635371, lng: -124.053291},
-	zoom: 14
-	};
-	map = new google.maps.Map(document.getElementById('map'),
-			mapOptions)
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 44.635371, lng: -124.053291},
+    zoom: 14
+  });
+  infowindow = new google.maps.InfoWindow({
+	content: name
+	});
 }
+
+
 
 function googleError() {
 	"use strict";
@@ -19,8 +22,6 @@ function googleError() {
 var ViewModel = function(){
 	"use strict";
 	var self = this;
-
-
 
 	var fourSquareUrl = 'https://api.foursquare.com/v2/venues/search?client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815&near=Newport, OR&radius=7500&query=coffee';
 	$.ajax({
@@ -46,11 +47,16 @@ var ViewModel = function(){
 			map: map,
 			title: locations[0][i].name,
 			});
-			marker.setMap(map);
+		//Add infowindows credit http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
+		google.maps.event.addListener(marker, 'click', function () {
+		infowindow.open(map, this);
+		marker.setMap(map);
+		});
+
+	function getNames(data) {};
 
 
-	};
-
+	}
 	}
 }
 ko.applyBindings(new ViewModel());
