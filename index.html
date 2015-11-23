@@ -15,6 +15,14 @@
 
 	<body>
 		<div id="map"></div>
+<input id="input" type="search" placeholder="search by name" data-bind="textInput: userInput>
+    <div id="list-holder">
+    	<ul id="list-view" data-bind="foreach: venues">
+     	 <li id="list-name" data-bind="text: name, click: $parent.openInfoWindow"></li>
+    	</ul>
+	</div>
+
+
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="js/main.js"></script>

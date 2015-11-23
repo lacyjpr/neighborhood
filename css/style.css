@@ -8,3 +8,26 @@ body {
 #map {
   height: 100%;
 }
+
+input {
+  position: fixed;
+  left: 20px;
+  top: 40px;
+  height: 40px;
+  width: 20%;
+  font-size: 20px;
+}
+
+/* Placed over ocean for visual needs */
+#list-view {
+  position: fixed;
+  height:40%;
+  overflow: auto;
+  top: 80px;
+  left: 20px;
+  width: 20%;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
