@@ -1,4 +1,4 @@
-var locations = ko.observableArray();
+var locations = [];
 
 var map;
 function initMap() {
@@ -8,13 +8,6 @@ function initMap() {
 	};
 	map = new google.maps.Map(document.getElementById('map'),
 			mapOptions)
-
-var marker = new google.maps.Marker({
-	position: (locations[0][0].location.lat, locations[0][0].location.lng),
-	map: map,
-	title: 'Hello World!'
-});
-marker.setMap(map);
 }
 
 function googleError() {
@@ -34,44 +27,30 @@ var ViewModel = function(){
 		async: true,
 		dataType: "json",
 		success: function (data) {
-			var data = data;
-			console.log(data);
 			locations.push(data.response.venues);
 
-			// Save data outside the AJAX request
-			saveFourSquare(data);
-
-			// All work here
+			// Set Markers with data
+			setMarkers(data);
 			console.log(locations);
-			console.log(locations[0].length)
-			console.log(locations[0][0].location);
+			console.log(locations[0][0].name)
+
 		}
 	});
 
-	function saveFourSquare(data) {
+	function setMarkers(data) {
 		locations.push(data.response.venues);
-
-		// Works here
-		console.log(locations);
-	}
-
-// Doesn't work here
-console.dir(self.locations);
-
-// Doesn't work here
-console.dir(self.locations[0].length);
-for (var i = 0; i < self.locations[0].length; i++) {
-		console.log("lat" + self.locations[0][i].location.lat)
-		console.log("lng" + self.locations[0][i].location.lng)
+		for (var i = 0; i < locations[0].length; i++) {
 		var marker = new google.maps.Marker({
-			position: google.maps.LatLng(self.locations[0][i].location.lat, self.locations[0][i].location.lng),
-			map: map
-		});
-		marker.setMap(map);
+			position: new google.maps.LatLng(locations[0][i].location.lat, locations[0][i].location.lng),
+			map: map,
+			title: locations[0][i].name,
+			});
+			marker.setMap(map);
+	};
+
 
 }
 }
-console.dir(self.locations);
 ko.applyBindings(new ViewModel());
 
 
