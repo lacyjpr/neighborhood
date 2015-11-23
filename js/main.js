@@ -56,22 +56,22 @@ var ViewModel = function(){
 	}
 
 // Doesn't work here
-console.log(locations);
+console.dir(self.locations);
 
 // Doesn't work here
-console.log(locations[0].length);
-for (var i = 0; i < locations[0].length; i++) {
-		console.log("lat" + locations[0][i].location.lat)
-		console.log("lng" + locations[0][i].location.lng)
+console.dir(self.locations[0].length);
+for (var i = 0; i < self.locations[0].length; i++) {
+		console.log("lat" + self.locations[0][i].location.lat)
+		console.log("lng" + self.locations[0][i].location.lng)
 		var marker = new google.maps.Marker({
-			position: google.maps.LatLng(locations[0][i].location.lat, locations[0][i].location.lng),
+			position: google.maps.LatLng(self.locations[0][i].location.lat, self.locations[0][i].location.lng),
 			map: map
 		});
 		marker.setMap(map);
 
 }
 }
-
+console.dir(self.locations);
 ko.applyBindings(new ViewModel());
 
 
