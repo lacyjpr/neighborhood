@@ -15,6 +15,7 @@ function googleError() {
 	document.getElementById('map').innerHTML = "<h1>Google Maps is not loading</h1>";
 };
 
+
 var ViewModel = function(){
 	"use strict";
 	var self = this;
@@ -31,13 +32,13 @@ var ViewModel = function(){
 
 			// Set Markers with data
 			setMarkers(data);
+			getNames(data)
 			console.log(locations);
-			console.log(locations[0][0].name)
-
 		}
 	});
 
 	function setMarkers(data) {
+		"use strict";
 		locations.push(data.response.venues);
 		for (var i = 0; i < locations[0].length; i++) {
 		var marker = new google.maps.Marker({
@@ -46,10 +47,11 @@ var ViewModel = function(){
 			title: locations[0][i].name,
 			});
 			marker.setMap(map);
+
+
 	};
 
-
-}
+	}
 }
 ko.applyBindings(new ViewModel());
 
