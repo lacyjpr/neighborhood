@@ -1,4 +1,4 @@
-var locations = [];
+var locations = ko.observableArray();
 
 var map;
 function initMap() {
