@@ -28,7 +28,7 @@ var ViewModel = function(){
 	self.venues = ko.observableArray();
 	console.dir(self.venues);
 
-	function getNames(data) 
+	function getNames(data) {
 		locations.push(data.response.venues);
 		for (var i = 0; i < locations[0].length; i++) {
 			self.venues.push(locations[0][i]);
