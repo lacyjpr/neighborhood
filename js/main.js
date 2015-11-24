@@ -26,7 +26,7 @@ var ViewModel = function(){
 	var self = this;
 
 	self.venues = ko.observableArray();
-	console.dir(self.venues);
+	console.log(self.venues);
 
 	function getNames(data) {
 		self.venues.push(data.response.venues);
