@@ -29,6 +29,11 @@ var locations = [
 	lat: 44.638854379944675,
 	lng: -124.0611189933332
 },
+{
+	name: "Dockside Coffee House Gallery",
+	lat: 44.630096,
+	lng: -124.05267119407654
+},
 
 
 
