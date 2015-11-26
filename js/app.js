@@ -63,13 +63,18 @@ var locations = [
 
 // Initialize the map
 var map;
-function initMap() {
+function initMap(ViewModel) {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 44.635371, lng: -124.053291},
     zoom: 14
-  });
-  
+  }); 
+ViewModel;
 }
+
+function googleError() {
+	"use strict";
+	document.getElementById('map').innerHTML = "<h1>Google Maps is not loading</h1>";
+};
 
 //Place constructor
 // Credit https://discussions.udacity.com/t/having-trouble-accessing-data-outside-an-ajax-request/39072/10
@@ -107,7 +112,7 @@ var ViewModel = function(){
 			marker.setMap(map);
 			});
 		});
-		place.marker = marker;
+		placeItem.marker = marker;
 
 
 
