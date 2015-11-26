@@ -63,12 +63,12 @@ var locations = [
 
 // Initialize the map
 var map;
-function initMap(ViewModel) {
+function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 44.635371, lng: -124.053291},
     zoom: 14
-  }); 
-ViewModel();
+  });
+ko.applyBindings(new ViewModel()); 
 }
 
 function googleError() {
@@ -86,7 +86,7 @@ var Place = function(data) {
 }
 
 var ViewModel = function(){
-	var self = this
+	var self = this;
 
 	// Credit https://www.udacity.com/course/viewer#!/c-ud989-nd/l-3406489055/e-3464818693/m-3464818694
 	this.placeList = ko.observableArray([]);
@@ -95,31 +95,31 @@ var ViewModel = function(){
 	locations.forEach(function(placeItem) {
 		self.placeList.push( new Place(placeItem));
 	}); 
-
+	console.dir(self.placeList);
+	
 	// Credit https://github.com/kacymckibben/project-5-app.git
+	var infowindow = new google.maps.InfoWindow();
 	var marker;
+
 	self.placeList().forEach(function(placeItem){
 
 		marker = new google.maps.Marker({
-			position: new google.maps.LatLng(placeItem.lat(), placeItem.lng),
+			position: new google.maps.LatLng(placeItem.lat(),placeItem.lng()),
 			map: map,
 			animation: google.maps.Animation.DROP,
-			title: placeItem.name(),
-				});
-			//Add infowindows credit http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
+			title: placeItem.name()
+		});
+		//Add infowindows credit http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
 			google.maps.event.addListener(marker, 'click', function () {
 			infowindow.open(map, this);
 			marker.setMap(map);
 			});
-		});
-		placeItem.marker = marker;
-
-
-
+	});
+		placeItem.marker() = marker;
 
 
 } // ViewModel
-ko.applyBindings(new ViewModel());
+
 
 
 
