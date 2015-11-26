@@ -68,7 +68,7 @@ function initMap(ViewModel) {
     center: {lat: 44.635371, lng: -124.053291},
     zoom: 14
   }); 
-ViewModel;
+ViewModel();
 }
 
 function googleError() {
