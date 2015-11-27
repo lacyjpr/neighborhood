@@ -109,13 +109,14 @@ var ViewModel = function(){
 			animation: google.maps.Animation.DROP,
 			title: placeItem.name()
 		});
+		placeItem.marker = marker;
 		//Add infowindows credit http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
 			google.maps.event.addListener(marker, 'click', function () {
 			infowindow.open(map, this);
 			marker.setMap(map);
 			});
 	});
-		placeItem.marker() = marker;
+		
 
 
 } // ViewModel
