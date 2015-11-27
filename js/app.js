@@ -39,11 +39,11 @@ var locations = [
 		lat: 44.62982165943548,
 		lng: -124.05335751403604
 	},
-	{
-		name: "Newport Bay Coffee Company",
-		lat: 44.672567021784374,
-		lng: -124.05885636806488
-	},
+	// {
+	// 	name: "Newport Bay Coffee Company",
+	// 	lat: 44.672567021784374,
+	// 	lng: -124.05885636806488
+	// },
 	{
 		name: "Starbucks",
 		lat: 44.63738090498442,
@@ -66,6 +66,7 @@ var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 44.635371, lng: -124.053291},
+    //center: {lat: 44.64070053, lng: -124.05267986},
     zoom: 14
   });
 ko.applyBindings(new ViewModel()); 
@@ -109,12 +110,12 @@ var ViewModel = function(){
 			animation: google.maps.Animation.DROP,
 			title: placeItem.name()
 		});
-		placeItem.marker = marker;
 		//Add infowindows credit http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
 			google.maps.event.addListener(marker, 'click', function () {
 			infowindow.open(map, this);
 			marker.setMap(map);
 			});
+		placeItem.marker = marker;
 	});
 		
 

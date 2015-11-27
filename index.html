@@ -8,19 +8,27 @@
 		<meta name="author" content="Jean-Paul Lacy">
 		<title>Coffee In Newport, OR</title>
 		<link rel="stylesheet" href="css/style.css">
-
 		
 		
 	</head>
 
 	<body>
-		<div id="map"></div>
-		<!--<input id="input" type="search" placeholder="search by name" data-bind="textInput: userInput">-->
-		<div id="list-holder">
-			<ul id="list-view" data-bind="foreach: placeList">
-				<li id="list-name" data-bind="text: name"></li>
-			</ul>
-		</div>
+		<main>
+			<div class="row">
+				<div class="col-md-3">
+					<h3>Key Locations</h3>
+					<ul class="locList" data-bind="foreach: placeList">
+						<li>
+							<span data-bind="text: name, click: $parent.show_info"></span>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-9">
+					<div id="map-canvas" class="mapCanvas"></div>
+				</div>
+			</div>
+		</main>
+	<body>
 
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
