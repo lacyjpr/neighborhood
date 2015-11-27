@@ -1,46 +1,30 @@
 html,
 body {
   font-family: Roboto, Sans-serif;
-	height: 100%;
-	margin: 0;
-	padding: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 #map {
   height: 100%;
 }
 
-input {
-  position: fixed;
-  left: 20px;
-  top: 40px;
-  height: 40px;
-  width: 20%;
-  font-size: 20px;
+/*.mapCanvas {
+  height: 100%;
+  width: 100%;
 }
-
-#list-view {
-  position: fixed;
-  height:40%;
-  overflow: auto;
-  top: 80px;
-  right: 20px;
-  width: 30%;
-  color: #000;
-  background-color: #fff;
-  margin: 0;
-  padding: 0;
-  font-size: 20px;
-}
-
-.mapCanvas {
-  height: calc(100% - 10vh);
-  width: calc(100% - 5vw);
-}
-
+*/
 main,
 .row,
 .col-md-9 {
   height: 100%;
+  background-color: #000;
+  color: #fff;
+}
+
+.col-md-3 {
+  background-color: #000;
+  color: #fff;
 }
 

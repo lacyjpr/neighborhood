@@ -39,11 +39,6 @@ var locations = [
 		lat: 44.62982165943548,
 		lng: -124.05335751403604
 	},
-	// {
-	// 	name: "Newport Bay Coffee Company",
-	// 	lat: 44.672567021784374,
-	// 	lng: -124.05885636806488
-	// },
 	{
 		name: "Starbucks",
 		lat: 44.63738090498442,
@@ -117,7 +112,17 @@ var ViewModel = function(){
 			});
 		placeItem.marker = marker;
 	});
-		
+
+
+// Array with only the markers that should be visible based on search
+// Credit http://codepen.io/prather-mcs/pen/KpjbNN?editors=001
+	self.visible = ko.observableArray();
+
+	self.placeList().forEach(function(place) {
+		self.visible.push(place);
+	});
+	console.dir(self.visible);
+
 
 
 } // ViewModel

@@ -8,6 +8,7 @@
 		<meta name="author" content="Jean-Paul Lacy">
 		<title>Coffee In Newport, OR</title>
 		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 		
 		
 	</head>
@@ -16,15 +17,15 @@
 		<main>
 			<div class="row">
 				<div class="col-md-3">
-					<h3>Key Locations</h3>
-					<ul class="locList" data-bind="foreach: placeList">
-						<li>
-							<span data-bind="text: name, click: $parent.show_info"></span>
-						</li>
-					</ul>
+					<h3>Coffee in Newport, Oregon</h3>
+					<div id="list-holder">
+						<ul id="list-view" data-bind="foreach: placeList">
+							<li id="list-name" data-bind="text: name"></li>
+						</ul>
+					</div>
 				</div>
 				<div class="col-md-9">
-					<div id="map-canvas" class="mapCanvas"></div>
+					<div id="map"</div>
 				</div>
 			</div>
 		</main>
