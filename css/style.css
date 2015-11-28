@@ -10,11 +10,10 @@ body {
   height: 100%;
 }
 
-/*.mapCanvas {
-  height: 100%;
-  width: 100%;
+input {
+  background-color: #000;
 }
-*/
+
 main,
 .row,
 .col-md-9 {

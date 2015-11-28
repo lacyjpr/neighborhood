@@ -105,8 +105,9 @@ var ViewModel = function(){
 			animation: google.maps.Animation.DROP,
 			title: placeItem.name()
 		});
+
 		//Add infowindows credit http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
-			google.maps.event.addListener(marker, 'click', function () {
+			google.maps.event.addListener(placeItem.marker, 'click', function () {
 			infowindow.open(map, this);
 			marker.setMap(map);
 			});
@@ -114,14 +115,37 @@ var ViewModel = function(){
 	});
 
 
-// Array with only the markers that should be visible based on search
-// Credit http://codepen.io/prather-mcs/pen/KpjbNN?editors=001
+	// Array with only the markers that should be visible based on search
+	// Credit http://codepen.io/prather-mcs/pen/KpjbNN?editors=001
 	self.visible = ko.observableArray();
 
+	// All places are visible by default before user input
 	self.placeList().forEach(function(place) {
 		self.visible.push(place);
 	});
 	console.dir(self.visible);
+
+	// Track user input
+	self.userInput = ko.observable('');
+
+	// Filter markers: Remove all visible places, 
+	// if user input matches a place, make it and its marker visible
+	self.filterMarkers = function() {
+		var searchInput = self.userInput().toLowerCase();
+
+		self.visible.removeAll();
+		// Check places for match with user input
+		self.placeList().forEach(function(place) {
+			place.marker.setVisible(false);
+
+		if (place().name.toLowerCase().indexOf(searchInput) !== -1) {
+			self.visible.push(place);
+			}
+		});
+		self.visible().forEach(function(place){
+			place.marker.setVisible(true);
+		});
+	}; 
 
 
 
