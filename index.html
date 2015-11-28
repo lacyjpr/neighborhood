@@ -21,7 +21,7 @@
 					<input type="search" placeholder="Search by name" data-bind="textInput: userInput, event: {keyup: filterMarkers}">
 					<div id="list-holder">
 						<ul id="list-view" data-bind="foreach: visible">
-							<li id="list-name" data-bind="text: name"></li>
+							<li id="list-name" data-bind="text: name, click: $parent.showInfo"></li>
 						</ul>
 					</div>
 				</div>
