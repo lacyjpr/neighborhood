@@ -11,6 +11,8 @@ body {
 }
 
 input {
+  position: relative;
+  left: 20px;
   background-color: #000;
 }
 
