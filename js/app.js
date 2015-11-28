@@ -109,9 +109,7 @@ var ViewModel = function(){
 			title: placeItem.name()
 		});
 		placeItem.marker = marker;
-	});
-
-	function toggleBounce() {
+		function toggleBounce() {
 		if(placeItem.marker.getAnimation() !== null) {
 			placeItem.marker.setAnimation(null);
 		} else {
@@ -122,7 +120,22 @@ var ViewModel = function(){
 		//Add infowindows credit http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
 		google.maps.event.addListener(marker, 'click', function () {
 		infowindow.open(map, this);
+		toggleBounce();
+		setTimeout(toggleBounce, 500);
+		$.ajax({
+			url: 'https://api.foursquare.com/v2/venues/search?limit=1&ll=' + placeItem.lat() + ',' + placeItem.lng() + '&client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20140806',
+			success: function(data) {
+				console.dir(data)
+			}
 		});
+		});
+	});
+
+	self.showInfo = function(placeItem) {
+		google.maps.event.trigger(placeItem.marker, 'click');
+	}
+
+
 
 	// Array containing only the markers based on search
 	self.visible = ko.observableArray();
