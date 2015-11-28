@@ -129,7 +129,7 @@ var ViewModel = function(){
 					//console.dir(data);
 					var result = data.response.venue;
 					console.dir(result);
-					placeItem.name = result.name;
+					placeItem.name(result.name);
 				},
 				error: function(e) {
 					infowindow.setContent('<h5>Foursquare data is unavailable. Please try refreshing later.</h5>')
