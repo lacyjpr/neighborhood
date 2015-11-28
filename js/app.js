@@ -2,57 +2,68 @@ var locations = [
 	{
 		name: "Fast Lane Coffee",
 		lat: 44.64070053,
-		lng: -124.05267986
+		lng: -124.05267986,
+		id: "4d9a662a674ca14376eaba43"
 	},
 	{
 		name: "Dutch Bros. Coffee",
 		lat: 44.62933649650506,
-		lng: -124.06172633171082
+		lng: -124.06172633171082,
+		id: "4ae9a73ff964a5208ab521e3"
 	},
 	{
 		name: "The Coffee House",
 		lat: 44.631362557411194,
-		lng: -124.050916
+		lng: -124.050916,
+		id: "4b9bd043f964a5204e2836e3"
 	},
 	{
 		name: "Solid Grounds Coffee House",
 		lat: 44.633673,
-		lng: -124.057304
+		lng: -124.057304,
+		id: "4f32afba19836c91c7efd8a5"
 	},
 	{
 		name: "Bayscapes Coffee House",
 		lat: 44.63016470161697,
-		lng: -124.05276088349126
+		lng: -124.05276088349126,
+		id: "4e4455eb1838e44e898badeb"
 	},
 	{
 		name: "Carls Coffee",
 		lat: 44.638854379944675,
-		lng: -124.0611189933332
+		lng: -124.0611189933332,
+		id: "5116a3fce4b04e9f6ad94274"
 	},
 	{
 		name: "Dockside Coffee House Gallery",
 		lat: 44.630096,
-		lng: -124.05267119407654
+		lng: -124.05267119407654,
+		id: "4c55e6ccfd2ea59359727f2c"
 	},
 	{
 		name: "Surf Town Coffee Company",
 		lat: 44.62982165943548,
-		lng: -124.05335751403604
+		lng: -124.05335751403604,
+		id: "4c02a2e89a7920a1c0b5ce79"
 	},
 	{
 		name: "Starbucks",
 		lat: 44.63738090498442,
-		lng: -124.05263566533459
+		lng: -124.05263566533459,
+		id: "4bafb4d1f964a52080193ce3"
 	},
 	{
 		name: "Fins Coffee at the Oregon Coastal Aquarium",
 		lat: 44.617662114530646,
-		lng: -124.04709191325138
+		lng: -124.04709191325138,
+		id: "51f42596498eabca282eba39"
 	},
 	{
 		name: "Starbucks",
 		lat: 44.651158892548324,
-		lng: -124.0517664026574
+		lng: -124.0517664026574,
+		id: "4e4dd567bd41b76bef93e4a9"
 	}
 ];
 
@@ -78,6 +89,7 @@ var Place = function(data) {
 	this.name = ko.observable(data.name);
 	this.lat = ko.observable(data.lat);
 	this.lng = ko.observable(data.lng);
+	this.id = ko.observable(data.id);
 	this.marker = ko.observable();
 }
 
@@ -123,7 +135,7 @@ var ViewModel = function(){
 		toggleBounce();
 		setTimeout(toggleBounce, 500);
 		$.ajax({
-			url: 'https://api.foursquare.com/v2/venues/search?limit=1&ll=' + placeItem.lat() + ',' + placeItem.lng() + '&intent=match&query=' + placeItem.name() + '&client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815',
+			url: 'https://api.foursquare.com/v2/venues/' + placeItem.id() + '?client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815',
 			success: function(data) {
 				console.dir(data)
 			}
