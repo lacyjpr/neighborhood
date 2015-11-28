@@ -91,6 +91,7 @@ var Place = function(data) {
 	this.lng = ko.observable(data.lng);
 	this.id = ko.observable(data.id);
 	this.marker = ko.observable();
+	this.phone = ko.observable();
 }
 
 var ViewModel = function(){
@@ -105,8 +106,7 @@ var ViewModel = function(){
 	locations.forEach(function(placeItem) {
 		self.placeList.push( new Place(placeItem));
 	}); 
-	console.dir(self.placeList);
-	
+
 	// Place markers
 	// Credit https://github.com/kacymckibben/project-5-app.git
 	var infowindow = new google.maps.InfoWindow();
@@ -130,6 +130,7 @@ var ViewModel = function(){
 					var result = data.response.venue;
 					console.dir(result);
 					placeItem.name(result.name);
+					placeItem.phone(result.contact.formattedPhone);
 				},
 				error: function(e) {
 					infowindow.setContent('<h5>Foursquare data is unavailable. Please try refreshing later.</h5>')
@@ -151,7 +152,7 @@ var ViewModel = function(){
 		toggleBounce();
 		setTimeout(toggleBounce, 500);
 		getFoursquare();
-		infowindow.setContent('<h4>' + placeItem.name() + '</h4>')
+		infowindow.setContent('<h4>' + placeItem.name() + '</h4><p>' + placeItem.phone() + '</p>')
 		});
 	});
 
