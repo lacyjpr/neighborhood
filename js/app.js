@@ -123,11 +123,11 @@ var ViewModel = function(){
 		toggleBounce();
 		setTimeout(toggleBounce, 500);
 		$.ajax({
-			url: 'https://api.foursquare.com/v2/venues/search?limit=1&client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815&ll='+ placeItem.lat() + ',' + placeItem.lng() + '',
+			url: 'https://api.foursquare.com/v2/venues/search?limit=1&ll=' + placeItem.lat() + ',' + placeItem.lng() + '&intent=match&query=' + placeItem.name() + '&client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815',
 			success: function(data) {
 				console.dir(data)
 			}
-		});
+		})
 		});
 	});
 
