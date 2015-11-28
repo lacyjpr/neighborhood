@@ -13,19 +13,23 @@ body {
 input {
   position: relative;
   left: 20px;
-  background-color: #000;
+  /*background-color: #000;*/
 }
+
+/*.iw {
+  color: #000;
+}*/
 
 main,
 .row,
 .col-md-9 {
   height: 100%;
-  background-color: #000;
-  color: #fff;
+  /*background-color: #000;
+  color: #fff;*/
 }
 
-.col-md-3 {
+/*.col-md-3 {
   background-color: #000;
   color: #fff;
-}
+}*/
 
