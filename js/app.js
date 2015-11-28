@@ -91,7 +91,7 @@ var Place = function(data) {
 	this.lng = ko.observable(data.lng);
 	this.id = ko.observable(data.id);
 	this.marker = ko.observable();
-	this.phone = ko.observable();
+	this.phone = ko.observable('');
 }
 
 var ViewModel = function(){
