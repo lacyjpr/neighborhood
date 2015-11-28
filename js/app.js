@@ -122,7 +122,7 @@ var ViewModel = function(){
 		});
 		placeItem.marker = marker;
 
-		function getFoursquare() {
+		//function getFoursquare() {
 			$.ajax({
 				url: 'https://api.foursquare.com/v2/venues/' + placeItem.id() + '?client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815',
 				success: function(data) {
@@ -136,7 +136,7 @@ var ViewModel = function(){
 					infowindow.setContent('<h5>Foursquare data is unavailable. Please try refreshing later.</h5>')
 				}
 			});
-		};
+		//};
 
 		function toggleBounce() {
 		if(placeItem.marker.getAnimation() !== null) {
@@ -151,7 +151,7 @@ var ViewModel = function(){
 		infowindow.open(map, this);
 		toggleBounce();
 		setTimeout(toggleBounce, 500);
-		getFoursquare();
+		//getFoursquare();
 		infowindow.setContent('<h4>' + placeItem.name() + '</h4><p>' + placeItem.phone() + '</p>')
 		});
 	});
