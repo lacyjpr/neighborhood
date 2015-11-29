@@ -136,7 +136,6 @@ var ViewModel = function(){
 					if (contact.hasOwnProperty('formattedPhone')) {
     					placeItem.phone(contact.formattedPhone || '');
 					}
-					}
 				},
 				error: function(e) {
 					infowindow.setContent('<h5>Foursquare data is unavailable. Please try refreshing later.</h5>')
