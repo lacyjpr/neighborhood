@@ -6,6 +6,12 @@ var locations = [
 		id: "4d9a662a674ca14376eaba43"
 	},
 	{
+		name: "Central Roast",
+		lat: 44.648684, 
+		lng: -124.052467,
+		id: "4e54fb65814df0239959f785"
+	},
+	{
 		name: "Dutch Bros. Coffee",
 		lat: 44.62933649650506,
 		lng: -124.06172633171082,
@@ -122,7 +128,7 @@ var ViewModel = function(){
 		});
 		placeItem.marker = marker;
 
-		//function getFoursquare() {
+
 			$.ajax({
 				url: 'https://api.foursquare.com/v2/venues/' + placeItem.id() + '?client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815',
 				success: function(data) {
@@ -130,18 +136,17 @@ var ViewModel = function(){
 					var result = data.response.venue;
 					console.dir(result);
 					placeItem.name(result.name);
-					//placeItem.phone(result.contact.formattedPhone);
 					// Credit https://discussions.udacity.com/t/foursquare-results-undefined-until-the-second-click-on-infowindow/39673/2
 					var contact = result.hasOwnProperty('contact') ? result.contact : '';
 					if (contact.hasOwnProperty('formattedPhone')) {
-    					placeItem.phone(contact.formattedPhone || '');
+					placeItem.phone(contact.formattedPhone || '');
 					}
 				},
 				error: function(e) {
 					infowindow.setContent('<h5>Foursquare data is unavailable. Please try refreshing later.</h5>')
 				}
 			});
-		//};
+
 
 		function toggleBounce() {
 		if(placeItem.marker.getAnimation() !== null) {
