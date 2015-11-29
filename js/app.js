@@ -98,6 +98,9 @@ var Place = function(data) {
 	this.id = ko.observable(data.id);
 	this.marker = ko.observable();
 	this.phone = ko.observable('');
+	this.description = ko.observable('');
+	this.address = ko.observable('');
+	this.rating = ko.observable('');
 }
 
 var ViewModel = function(){
@@ -134,12 +137,26 @@ var ViewModel = function(){
 				success: function(data) {
 					//console.dir(data);
 					var result = data.response.venue;
+					console.dir(placeItem.name());
 					console.dir(result);
 					placeItem.name(result.name);
 					// Credit https://discussions.udacity.com/t/foursquare-results-undefined-until-the-second-click-on-infowindow/39673/2
+
 					var contact = result.hasOwnProperty('contact') ? result.contact : '';
 					if (contact.hasOwnProperty('formattedPhone')) {
 					placeItem.phone(contact.formattedPhone || '');
+
+					var location = result.hasOwnProperty('location') ? result.location : '';
+					if (location.hasOwnProperty('address')) {
+					placeItem.address(location.address || '');
+					}
+
+					var rating = result.hasOwnProperty('rating') ? result.rating : '';
+					placeItem.rating(result.rating || '');
+					console.dir(result.rating);
+
+					var description = result.hasOwnProperty('description') ? result.description : '';
+					placeItem.description(description || '');
 					}
 				},
 				error: function(e) {
@@ -162,7 +179,9 @@ var ViewModel = function(){
 		toggleBounce();
 		setTimeout(toggleBounce, 500);
 		//getFoursquare();
-		infowindow.setContent('<h4>' + placeItem.name() + '</h4><p>' + placeItem.phone() + '</p>')
+		infowindow.setContent('<h4>' + placeItem.name() + '</h4><p>' + placeItem.phone() + 
+			'</p><p>' + placeItem.address() + '</p><p>' + placeItem.description() + '</p><p>'
+			+ placeItem.rating() + '</p>')
 		});
 	});
 
