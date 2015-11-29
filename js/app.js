@@ -101,6 +101,8 @@ var Place = function(data) {
 	this.description = ko.observable('');
 	this.address = ko.observable('');
 	this.rating = ko.observable('');
+	this.url = ko.observable('');
+	this.canonicalUrl = ko.observable('');
 }
 
 var ViewModel = function(){
@@ -151,13 +153,20 @@ var ViewModel = function(){
 					placeItem.address(location.address || '');
 					}
 
-					var rating = result.hasOwnProperty('rating') ? result.rating : '';
-					placeItem.rating(result.rating || '');
-					console.dir(result.rating);
-
 					var description = result.hasOwnProperty('description') ? result.description : '';
 					placeItem.description(description || '');
+
+					var rating = result.hasOwnProperty('rating') ? result.rating : '';
+					placeItem.rating(rating || '');
+					console.dir(rating);
+
+					var url = result.hasOwnProperty('url') ? result.url : '';
+					placeItem.url(url || '');
+
+					placeItem.canonicalUrl(result.canonicalUrl);
 					}
+
+
 				},
 				error: function(e) {
 					infowindow.setContent('<h5>Foursquare data is unavailable. Please try refreshing later.</h5>')
@@ -181,7 +190,9 @@ var ViewModel = function(){
 		//getFoursquare();
 		infowindow.setContent('<h4>' + placeItem.name() + '</h4><p>' + placeItem.phone() + 
 			'</p><p>' + placeItem.address() + '</p><p>' + placeItem.description() + '</p><p>'
-			+ placeItem.rating() + '</p>')
+			+ placeItem.rating() + '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() 
+			+ '</a></p><p><a href=' 
+			+ placeItem.canonicalUrl() + '>' + placeItem.canonicalUrl() +'</a></p>')
 		});
 	});
 
