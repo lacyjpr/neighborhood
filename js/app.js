@@ -136,8 +136,10 @@ var ViewModel = function(){
 
 			$.ajax({
 				url: 'https://api.foursquare.com/v2/venues/' + placeItem.id() + '?client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815',
+				dataType: "json",
 				success: function(data) {
-					//console.dir(data);
+					console.dir(placeItem.name());
+					console.dir(data);
 					var result = data.response.venue;
 					console.dir(placeItem.name());
 					console.dir(result);
@@ -147,6 +149,7 @@ var ViewModel = function(){
 					var contact = result.hasOwnProperty('contact') ? result.contact : '';
 					if (contact.hasOwnProperty('formattedPhone')) {
 					placeItem.phone(contact.formattedPhone || '');
+					}
 
 					var location = result.hasOwnProperty('location') ? result.location : '';
 					if (location.hasOwnProperty('address')) {
@@ -157,16 +160,13 @@ var ViewModel = function(){
 					placeItem.description(description || '');
 
 					var rating = result.hasOwnProperty('rating') ? result.rating : '';
-					placeItem.rating(rating || '');
+					placeItem.rating('rating: ' + rating || '');
 					console.dir(rating);
 
 					var url = result.hasOwnProperty('url') ? result.url : '';
 					placeItem.url(url || '');
 
 					placeItem.canonicalUrl(result.canonicalUrl);
-					}
-
-
 				},
 				error: function(e) {
 					infowindow.setContent('<h5>Foursquare data is unavailable. Please try refreshing later.</h5>')
@@ -188,11 +188,11 @@ var ViewModel = function(){
 		toggleBounce();
 		setTimeout(toggleBounce, 500);
 		//getFoursquare();
-		infowindow.setContent('<h4>' + placeItem.name() + '</h4><p>' + placeItem.phone() + 
+		infowindow.setContent('<h4>' + placeItem.name() + '</h4><p>Information from Foursquare:</p><p>' + placeItem.phone() + 
 			'</p><p>' + placeItem.address() + '</p><p>' + placeItem.description() + '</p><p>'
 			+ placeItem.rating() + '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() 
 			+ '</a></p><p><a href=' 
-			+ placeItem.canonicalUrl() + '>' + placeItem.canonicalUrl() +'</a></p>')
+			+ placeItem.canonicalUrl() + '>More Foursquare info</a></p>')
 		});
 	});
 
