@@ -132,9 +132,10 @@ var ViewModel = function(){
 					placeItem.name(result.name);
 					//placeItem.phone(result.contact.formattedPhone);
 					// Credit https://discussions.udacity.com/t/foursquare-results-undefined-until-the-second-click-on-infowindow/39673/2
-					//var contact = venue.hasOwnProperty('contact') ? venue.contact : '';
-					if (result.contact.hasOwnProperty('formattedPhone')) {
+					var contact = venue.hasOwnProperty('contact') ? venue.contact : '';
+					if (contact.hasOwnProperty('formattedPhone')) {
     					placeItem.phone(contact.formattedPhone || '');
+					}
 					}
 				},
 				error: function(e) {
