@@ -24,12 +24,6 @@ var locations = [
 		id: "4b9bd043f964a5204e2836e3"
 	},
 	{
-		name: "Solid Grounds Coffee House",
-		lat: 44.633673,
-		lng: -124.057304,
-		id: "4f32afba19836c91c7efd8a5"
-	},
-	{
 		name: "Bayscapes Coffee House",
 		lat: 44.63016470161697,
 		lng: -124.05276088349126,
@@ -103,6 +97,8 @@ var Place = function(data) {
 	this.rating = ko.observable('');
 	this.url = ko.observable('');
 	this.canonicalUrl = ko.observable('');
+	this.photoPrefix = ko.observable('');
+	this.photoSuffix = ko.observable('');
 }
 
 var ViewModel = function(){
@@ -138,8 +134,6 @@ var ViewModel = function(){
 				url: 'https://api.foursquare.com/v2/venues/' + placeItem.id() + '?client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815',
 				dataType: "json",
 				success: function(data) {
-					console.dir(placeItem.name());
-					console.dir(data);
 					var result = data.response.venue;
 					console.dir(placeItem.name());
 					console.dir(result);
@@ -156,12 +150,21 @@ var ViewModel = function(){
 					placeItem.address(location.address || '');
 					}
 
+					var bestPhoto = result.hasOwnProperty('bestPhoto') ? result.bestPhoto : '';
+					if (bestPhoto.hasOwnProperty('prefix')) {
+					placeItem.photoPrefix(bestPhoto.prefix || '');
+					}
+
+					var bestPhoto = result.hasOwnProperty('bestPhoto') ? result.bestPhoto : '';
+					if (bestPhoto.hasOwnProperty('suffix')) {
+					placeItem.photoSuffix(bestPhoto.suffix || '');
+					}
+
 					var description = result.hasOwnProperty('description') ? result.description : '';
 					placeItem.description(description || '');
 
 					var rating = result.hasOwnProperty('rating') ? result.rating : '';
-					placeItem.rating('rating: ' + rating || '');
-					console.dir(rating);
+					placeItem.rating(rating || 'none');
 
 					var url = result.hasOwnProperty('url') ? result.url : '';
 					placeItem.url(url || '');
@@ -188,10 +191,13 @@ var ViewModel = function(){
 		toggleBounce();
 		setTimeout(toggleBounce, 500);
 		//getFoursquare();
-		infowindow.setContent('<h4>' + placeItem.name() + '</h4><p>Information from Foursquare:</p><p>' + placeItem.phone() + 
-			'</p><p>' + placeItem.address() + '</p><p>' + placeItem.description() + '</p><p>'
+		infowindow.setContent('<h4>' + placeItem.name() + '</h4><img src="' + placeItem.photoPrefix() + 
+			'110x110' + placeItem.photoSuffix() +
+			'" alt="Image Location"><p>Information from Foursquare:</p><p>' + placeItem.phone() + 
+			'</p><p>' + placeItem.address() + '</p><p>' + placeItem.description() + '</p><p>Rating: '
 			+ placeItem.rating() + '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() 
-			+ '</a></p><p><a href=' 
+			+ '</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' + placeItem.lat() + 
+			',' + placeItem.lng() + '>Directions</a></p><p><a href=' 
 			+ placeItem.canonicalUrl() + '>More Foursquare info</a></p>')
 		});
 	});
