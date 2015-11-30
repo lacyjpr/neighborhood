@@ -114,9 +114,9 @@ var ViewModel = function(){
 		self.placeList.push( new Place(placeItem));
 	}); 
 
+	var infowindow = new google.maps.InfoWindow();
 	// Place markers
 	// Credit https://github.com/kacymckibben/project-5-app.git
-	var infowindow = new google.maps.InfoWindow();
 	var marker;
 
 	self.placeList().forEach(function(placeItem){
