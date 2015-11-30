@@ -81,7 +81,7 @@ ko.applyBindings(new ViewModel());
 function googleError() {
 	"use strict";
 	document.getElementById('map').innerHTML = "<h1>Google Maps is not loading</h1>";
-};
+}
 
 //Place constructor
 // Credit https://discussions.udacity.com/t/having-trouble-accessing-data-outside-an-ajax-request/39072/10
@@ -99,7 +99,7 @@ var Place = function(data) {
 	this.canonicalUrl = ko.observable('');
 	this.photoPrefix = ko.observable('');
 	this.photoSuffix = ko.observable('');
-}
+};
 
 var ViewModel = function(){
 	var self = this;
@@ -114,7 +114,6 @@ var ViewModel = function(){
 		self.placeList.push( new Place(placeItem));
 	}); 
 
-	var infowindow = new google.maps.InfoWindow();
 	// Place markers
 	// Credit https://github.com/kacymckibben/project-5-app.git
 	var marker;
@@ -138,8 +137,8 @@ var ViewModel = function(){
 					console.dir(placeItem.name());
 					console.dir(result);
 					placeItem.name(result.name);
+					// Check each result for properties, if the property exists, add it to the Place constructor
 					// Credit https://discussions.udacity.com/t/foursquare-results-undefined-until-the-second-click-on-infowindow/39673/2
-
 					var contact = result.hasOwnProperty('contact') ? result.contact : '';
 					if (contact.hasOwnProperty('formattedPhone')) {
 					placeItem.phone(contact.formattedPhone || '');
@@ -172,10 +171,15 @@ var ViewModel = function(){
 					placeItem.canonicalUrl(result.canonicalUrl);
 				},
 				error: function(e) {
-					infowindow.setContent('<h5>Foursquare data is unavailable. Please try refreshing later.</h5>')
+					infowindow.setContent('<h5>Foursquare data is unavailable. Please try refreshing later.</h5>');
 				}
 			});
 
+		var contentString = '<h4>' + placeItem.name() + '</h4><img src="' + placeItem.photoPrefix() + '110x110' + placeItem.photoSuffix() + '" alt="Image Location"><p>Information from Foursquare:</p><p>' + placeItem.phone() + '</p><p>' + placeItem.address() + '</p><p>' + placeItem.description() + '</p><p>Rating: '+ placeItem.rating() + '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() + '</a></p><p><a target="_blank" href=' + placeItem.canonicalUrl() + '>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' + placeItem.lat() + ',' + placeItem.lng() + '>Directions</a></p>';
+
+		var infowindow = new google.maps.InfoWindow({
+			content: contentString
+		});
 
 		function toggleBounce() {
 		if(placeItem.marker.getAnimation() !== null) {
@@ -185,26 +189,26 @@ var ViewModel = function(){
 		}
 	}
 
+
 		//Add infowindows credit http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
 		google.maps.event.addListener(marker, 'click', function () {
 		infowindow.open(map, this);
 		toggleBounce();
 		setTimeout(toggleBounce, 500);
-		//getFoursquare();
-		infowindow.setContent('<h4>' + placeItem.name() + '</h4><img src="' + placeItem.photoPrefix() + 
-			'110x110' + placeItem.photoSuffix() +
-			'" alt="Image Location"><p>Information from Foursquare:</p><p>' + placeItem.phone() + 
-			'</p><p>' + placeItem.address() + '</p><p>' + placeItem.description() + '</p><p>Rating: '
-			+ placeItem.rating() + '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() 
-			+ '</a></p><p><a target="_blank" href=' 
-			+ placeItem.canonicalUrl() + '>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' + placeItem.lat() + 
-			',' + placeItem.lng() + '>Directions</a></p>')
+		// infowindow.setContent('<h4>' + placeItem.name() + '</h4><img src="' + placeItem.photoPrefix() + 
+		// 	'110x110' + placeItem.photoSuffix() +
+		// 	'" alt="Image Location"><p>Information from Foursquare:</p><p>' + placeItem.phone() + 
+		// 	'</p><p>' + placeItem.address() + '</p><p>' + placeItem.description() + '</p><p>Rating: '
+		// 	+ placeItem.rating() + '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() 
+		// 	+ '</a></p><p><a target="_blank" href=' 
+		// 	+ placeItem.canonicalUrl() + '>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' + placeItem.lat() + 
+		// 	',' + placeItem.lng() + '>Directions</a></p>')
 		});
 	});
 
 	self.showInfo = function(placeItem) {
 		google.maps.event.trigger(placeItem.marker, 'click');
-	}
+	};
 
 
 
@@ -235,14 +239,14 @@ var ViewModel = function(){
 		});
 		self.visible().forEach(function(place){
 			place.marker.setVisible(true);
-		})
-	}
+		});
+	};
 
 
 
 
 
-} // ViewModel
+}; // ViewModel
 
 
 
