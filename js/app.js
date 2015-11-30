@@ -196,9 +196,9 @@ var ViewModel = function(){
 			'" alt="Image Location"><p>Information from Foursquare:</p><p>' + placeItem.phone() + 
 			'</p><p>' + placeItem.address() + '</p><p>' + placeItem.description() + '</p><p>Rating: '
 			+ placeItem.rating() + '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() 
-			+ '</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' + placeItem.lat() + 
-			',' + placeItem.lng() + '>Directions</a></p><p><a target="_blank" href=' 
-			+ placeItem.canonicalUrl() + '>Foursquare Page</a></p>')
+			+ '</a></p><p><a target="_blank" href=' 
+			+ placeItem.canonicalUrl() + '>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' + placeItem.lat() + 
+			',' + placeItem.lng() + '>Directions</a></p>')
 		});
 	});
 
