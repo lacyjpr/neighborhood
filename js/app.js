@@ -172,7 +172,7 @@ var ViewModel = function(){
 				},
 				error: function(e) {
 					//infowindow.setContent('<h5>Foursquare data is unavailable. Please try refreshing later.</h5>');
-					document.getElementById("error").innerHTML = "<h3>Foursquare data is unavailable. Please try refreshing later.</h3>";
+					document.getElementById("error").innerHTML = "<h5>Foursquare data is unavailable. Please try refreshing later.</h5>";
 				}
 			});
 
