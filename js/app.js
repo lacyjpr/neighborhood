@@ -143,7 +143,8 @@ var ViewModel = function(){
 					console.dir(placeItem.name());
 					console.dir(result);
 					placeItem.name(result.name);
-					// Check each result for properties, if the property exists, add it to the Place constructor
+					// Check each result for properties, if the property exists, 
+					// add it to the Place constructor
 					// Credit https://discussions.udacity.com/t/foursquare-results-undefined-until-the-second-click-on-infowindow/39673/2
 					var contact = result.hasOwnProperty('contact') ? result.contact : '';
 					if (contact.hasOwnProperty('formattedPhone')) {
@@ -160,7 +161,6 @@ var ViewModel = function(){
 					placeItem.photoPrefix(bestPhoto.prefix || '');
 					}
 
-					var bestPhoto = result.hasOwnProperty('bestPhoto') ? result.bestPhoto : '';
 					if (bestPhoto.hasOwnProperty('suffix')) {
 					placeItem.photoSuffix(bestPhoto.suffix || '');
 					}
