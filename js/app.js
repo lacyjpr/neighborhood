@@ -130,7 +130,7 @@ var ViewModel = function(){
 
 
 			$.ajax({
-				url: 'https://api.foursquare.com/v2/venues/' + placeItem.id() + '?client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815',
+				url: 'https://api.oursquare.com/v2/venues/' + placeItem.id() + '?client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815',
 				dataType: "json",
 				success: function(data) {
 					var result = data.response.venue;
@@ -171,15 +171,18 @@ var ViewModel = function(){
 					placeItem.canonicalUrl(result.canonicalUrl);
 				},
 				error: function(e) {
-					infowindow.setContent('<h5>Foursquare data is unavailable. Please try refreshing later.</h5>');
+					//infowindow.setContent('<h5>Foursquare data is unavailable. Please try refreshing later.</h5>');
+					document.getElementById("error").innerHTML = "<h4>Foursquare data is unavailable. Please try refreshing later.</h4>";
 				}
 			});
 
-		var contentString = ('<h4>' + placeItem.name() + '</h4><img src="' + placeItem.photoPrefix() + '110x110' + placeItem.photoSuffix() + '" alt="Image Location"><p>Information from Foursquare:</p><p>' + placeItem.phone() + '</p><p>' + placeItem.address() + '</p><p>' + placeItem.description() + '</p><p>Rating: '+ placeItem.rating() + '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() + '</a></p><p><a target="_blank" href=' + placeItem.canonicalUrl() + '>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' + placeItem.lat() + ',' + placeItem.lng() + '>Directions</a></p>');
+		//var contentString = '<h4>' + placeItem.name() + '</h4><img src="' + placeItem.photoPrefix() + '110x110' + placeItem.photoSuffix() + '" alt="Image Location"><p>Information from Foursquare:</p><p>' + placeItem.phone() + '</p><p>' + placeItem.address() + '</p><p>' + placeItem.description() + '</p><p>Rating: '+ placeItem.rating() + '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() + '</a></p><p><a target="_blank" href=' + placeItem.canonicalUrl() + '>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' + placeItem.lat() + ',' + placeItem.lng() + '>Directions</a></p>';
 
-		var infowindow = new google.maps.InfoWindow({
-			content: contentString
-		});
+
+		// var infowindow = new google.maps.InfoWindow({
+		// 	content: contentString
+		// });
+		var infowindow = new google.maps.InfoWindow();
 
 		function toggleBounce() {
 		if(placeItem.marker.getAnimation() !== null) {
@@ -195,14 +198,14 @@ var ViewModel = function(){
 		infowindow.open(map, this);
 		toggleBounce();
 		setTimeout(toggleBounce, 500);
-		// infowindow.setContent('<h4>' + placeItem.name() + '</h4><img src="' + placeItem.photoPrefix() + 
-		// 	'110x110' + placeItem.photoSuffix() +
-		// 	'" alt="Image Location"><p>Information from Foursquare:</p><p>' + placeItem.phone() + 
-		// 	'</p><p>' + placeItem.address() + '</p><p>' + placeItem.description() + '</p><p>Rating: '
-		// 	+ placeItem.rating() + '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() 
-		// 	+ '</a></p><p><a target="_blank" href=' 
-		// 	+ placeItem.canonicalUrl() + '>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' + placeItem.lat() + 
-		// 	',' + placeItem.lng() + '>Directions</a></p>')
+		infowindow.setContent('<h4>' + placeItem.name() + '</h4><img src="' + placeItem.photoPrefix() + 
+			'110x110' + placeItem.photoSuffix() +
+			'" alt="Image Location"><p>Information from Foursquare:</p><p>' + placeItem.phone() + 
+			'</p><p>' + placeItem.address() + '</p><p>' + placeItem.description() + '</p><p>Rating: '
+			+ placeItem.rating() + '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() 
+			+ '</a></p><p><a target="_blank" href=' 
+			+ placeItem.canonicalUrl() + '>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' + placeItem.lat() + 
+			',' + placeItem.lng() + '>Directions</a></p>')
 		});
 	});
 
