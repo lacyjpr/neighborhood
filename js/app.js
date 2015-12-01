@@ -114,6 +114,8 @@ var ViewModel = function(){
 		self.placeList.push( new Place(placeItem));
 	}); 
 
+	var infowindow = new google.maps.InfoWindow();
+
 	// Place markers
 	// Credit https://github.com/kacymckibben/project-5-app.git
 	var marker;
@@ -127,7 +129,6 @@ var ViewModel = function(){
 			title: placeItem.name()
 		});
 		placeItem.marker = marker;
-
 
 			$.ajax({
 				url: 'https://api.foursquare.com/v2/venues/' + placeItem.id() + '?client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815',
@@ -184,36 +185,33 @@ var ViewModel = function(){
 				}
 			});
 
-		//var infowindow = new google.maps.InfoWindow();
-
 		function toggleBounce() {
 		if(placeItem.marker.getAnimation() !== null) {
 			placeItem.marker.setAnimation(null);
 		} else {
 			placeItem.marker.setAnimation(google.maps.Animation.BOUNCE);
+			}
 		}
-	}
-
 
 		//Add infowindows credit http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
 		google.maps.event.addListener(marker, 'click', function () {
 		infowindow.open(map, this);
 		toggleBounce();
 		setTimeout(toggleBounce, 500);
-		// infowindow.setContent('<h4>' + placeItem.name() + '</h4><img src="' + placeItem.photoPrefix() + 
-		// 	'110x110' + placeItem.photoSuffix() +
-		// 	'" alt="Image Location"><p>Information from Foursquare:</p><p>' + placeItem.phone() + 
-		// 	'</p><p>' + placeItem.address() + '</p><p>' + placeItem.description() + '</p><p>Rating: '
-		// 	+ placeItem.rating() + '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() 
-		// 	+ '</a></p><p><a target="_blank" href=' 
-		// 	+ placeItem.canonicalUrl() + '>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' + placeItem.lat() + 
-		// 	',' + placeItem.lng() + '>Directions</a></p>')
+		infowindow.setContent('<h4>' + placeItem.name() + '</h4><img src="' + placeItem.photoPrefix() + 
+			'110x110' + placeItem.photoSuffix() +
+			'" alt="Image Location"><p>Information from Foursquare:</p><p>' + placeItem.phone() + 
+			'</p><p>' + placeItem.address() + '</p><p>' + placeItem.description() + '</p><p>Rating: '
+			+ placeItem.rating() + '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() 
+			+ '</a></p><p><a target="_blank" href=' 
+			+ placeItem.canonicalUrl() + '>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' + placeItem.lat() + 
+			',' + placeItem.lng() + '>Directions</a></p>')
 		});
-		var contentString = '<h4>' + placeItem.name() + '</h4><img src="' + placeItem.photoPrefix() + '110x110' + placeItem.photoSuffix() + '" alt="Image Location"><p>Information from Foursquare:</p><p>' + placeItem.phone() + '</p><p>' + placeItem.address() + '</p><p>' + placeItem.description() + '</p><p>Rating: '+ placeItem.rating() + '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() + '</a></p><p><a target="_blank" href=' + placeItem.canonicalUrl() + '>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' + placeItem.lat() + ',' + placeItem.lng() + '>Directions</a></p>';
+//		var contentString = '<h4>' + placeItem.name() + '</h4><img src="' + placeItem.photoPrefix() + '110x110' + placeItem.photoSuffix() + '" alt="Image Location"><p>Information from Foursquare:</p><p>' + placeItem.phone() + '</p><p>' + placeItem.address() + '</p><p>' + placeItem.description() + '</p><p>Rating: '+ placeItem.rating() + '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() + '</a></p><p><a target="_blank" href=' + placeItem.canonicalUrl() + '>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' + placeItem.lat() + ',' + placeItem.lng() + '>Directions</a></p>';
 
-		var infowindow = new google.maps.InfoWindow({
-			content: contentString
-		});
+		// var infowindow = new google.maps.InfoWindow({
+		// 	content: contentString
+		// });
 
 
 
