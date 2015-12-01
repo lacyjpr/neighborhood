@@ -186,11 +186,13 @@ var ViewModel = function(){
 						content: contentString
 					});
 
-					google.maps.event.addListener(marker, 'click', function () {
-					infowindow.open(map, this);
-					toggleBounce();
-					setTimeout(toggleBounce, 500);
-					});
+					google.maps.event.addListener(marker, 'click', (function (marker, placeItem) {
+					return function() {
+						infowindow.open(map, this);
+						toggleBounce();
+						setTimeout(toggleBounce, 500);
+					}
+					})(marker, placeItem));
 				},
 				error: function(e) {
 					//infowindow.setContent('<h5>Foursquare data is unavailable. Please try refreshing later.</h5>');
