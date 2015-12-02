@@ -2,9 +2,8 @@ var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	minifyCSS = require('gulp-minify-css'),
 	htmlmin = require('gulp-htmlmin')
-	//copy = require('gulp-copy')
-	//critical = require('critical'),
-	//rename = require('gulp-rename'),
+	// critical = require('critical'),
+	// rename = require('gulp-rename'),
 
 
 var paths = {
@@ -57,6 +56,7 @@ gulp.task('content', function(){
 		.pipe(gulp.dest('dist'));
 });
 
+// Copy the .ico file to dist
 gulp.task('copy', function(){
 	return gulp.src(paths.copy)
 		.pipe(gulp.dest('dist'));
@@ -70,7 +70,4 @@ gulp.task('watch', function(){
 });
 
 gulp.task('default', ['scripts', 'styles', 'content', 'copy', 'watch']);
-//gulp.task('default', ['scripts', 'styles', 'jpgImages', 'pngImages', 'svgImages', 'content', 'watch']);
-//gulp.task('default', ['scripts', 'styles', 'images', 'content', 'watch']);
-//
 
