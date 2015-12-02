@@ -136,8 +136,7 @@ var ViewModel = function(){
 				dataType: "json",
 				success: function(data) {
 					var result = data.response.venue;
-					console.dir(placeItem.name());
-					console.dir(result);
+
 					placeItem.name(result.name);
 
 					// Check each result for properties, if the property exists, add it to the Place constructor
@@ -146,39 +145,31 @@ var ViewModel = function(){
 					if (contact.hasOwnProperty('formattedPhone')) {
 					placeItem.phone(contact.formattedPhone || '');
 					}
-					console.log(placeItem.phone());
 
 					var location = result.hasOwnProperty('location') ? result.location : '';
 					if (location.hasOwnProperty('address')) {
 					placeItem.address(location.address || '');
 					}
-					console.log(placeItem.address());
 
 					var bestPhoto = result.hasOwnProperty('bestPhoto') ? result.bestPhoto : '';
 					if (bestPhoto.hasOwnProperty('prefix')) {
 					placeItem.photoPrefix(bestPhoto.prefix || '');
 					}
-					console.log(placeItem.photoPrefix());
 
 					if (bestPhoto.hasOwnProperty('suffix')) {
 					placeItem.photoSuffix(bestPhoto.suffix || '');
 					}
-					console.log(placeItem.photoSuffix());
 
 					var description = result.hasOwnProperty('description') ? result.description : '';
 					placeItem.description(description || '');
-					console.log(placeItem.description());
 
 					var rating = result.hasOwnProperty('rating') ? result.rating : '';
 					placeItem.rating(rating || 'none');
-					console.log(placeItem.rating());
 
 					var url = result.hasOwnProperty('url') ? result.url : '';
 					placeItem.url(url || '');
-					console.log(placeItem.url());
 
 					placeItem.canonicalUrl(result.canonicalUrl);
-					console.log(placeItem.canonicalUrl());
 
 					// Infowindow code in success function so error message displayed in infowindow works
 					var contentString = '<h4>' + placeItem.name() + '</h4><img src="' + 
