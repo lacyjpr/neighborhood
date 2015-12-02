@@ -182,18 +182,19 @@ var ViewModel = function(){
 
 					var contentString = '<h4>' + placeItem.name() + '</h4><img src="' + placeItem.photoPrefix() + '110x110' + placeItem.photoSuffix() + '" alt="Image Location"><p>Information from Foursquare:</p><p>' + placeItem.phone() + '</p><p>' + placeItem.address() + '</p><p>' + placeItem.description() + '</p><p>Rating: '+ placeItem.rating() + '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() + '</a></p><p><a target="_blank" href=' + placeItem.canonicalUrl() + '>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' + placeItem.lat() + ',' + placeItem.lng() + '>Directions</a></p>';
 
-					var infowindow = new google.maps.InfoWindow({
-						content: contentString
-					});
-
-					google.maps.event.addListener(placeItem.marker, 'click', function () {
+					// var infowindow = new google.maps.InfoWindow({
+					// 	content: contentString
+					// });
+					
+					google.maps.event.addListener(placeItem.marker, 'click', function () { 
 					infowindow.open(map, this);
 					toggleBounce();
 					setTimeout(toggleBounce, 500);
+					infowindow.setContent(contentString)
 					});
 				},
 				error: function(e) {
-					//infowindow.setContent('<h5>Foursquare data is unavailable. Please try refreshing later.</h5>');
+					infowindow.setContent('<h5>Foursquare data is unavailable. Please try refreshing later.</h5>');
 					document.getElementById("error").innerHTML = "<h4>Foursquare data is unavailable. Please try refreshing later.</h4>";
 				}
 			});
