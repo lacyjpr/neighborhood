@@ -1,34 +1,18 @@
 var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	minifyCSS = require('gulp-minify-css'),
-	//imageminJpegRecompress = require('imagemin-jpeg-recompress'),
-	//imageminPngcrush = require('imagemin-pngcrush'),
-	//imagemin = require('gulp-imagemin'),
-	//pngquant = require('imagemin-pngquant'),
 	htmlmin = require('gulp-htmlmin'),
-	//svgmin = require('gulp-svgmin'),
+	copy = require('gulp-copy')
 	//critical = require('critical'),
 	//rename = require('gulp-rename'),
-	//uncss = require('gulp-uncss')
+
 
 var paths = {
 	scripts: ['src/js/*.js'],
 	styles: ['src/css/*.css'],
-	//images: ['src/images/*'],
-	//jpgImages: ['src/images/*.jpg'],
-	//pngImages: ['src/images/*.png'],
-	//svgImages: ['src/images/*.svg'],
-	content: ['src/*.html']
+	content: ['src/*.html'],
+	copy: ['src/*.ico']
 }
-
-// gulp.task('un-css', function (){
-// 	return gulp.src('src/css/bootstrap.css')
-// 	.pipe(uncss({
-// 		html: ['src/index.html']
-// 	}))
-// 	.pipe(gulp.dest('dist/css'))
-// });
-
 
 // copy styles for critical
 // gulp.task('copystyles', function(){
@@ -66,36 +50,6 @@ gulp.task('styles', function(){
 		.pipe(gulp.dest('dist/css/'));
 });
 
-// gulp.task('images', function(){
-// 	return gulp.src(paths.images)
-// 	.pipe(imagemin({
-// 		progressive: true,
-// 		svgoPlugins: [{removeViewBox: false}],
-// 		use: [pngquant()]
-// 	}))
-// 	.pipe(gulp.dest('dist/images/'))
-// });
-
-// Compresses jpg files and outputs them to dist/img
-// gulp.task('jpgImages', function(){
-// 	return gulp.src(paths.jpgImages)
-// 		.pipe(imageminJpegRecompress({loops: 3})())
-// 		.pipe(gulp.dest('dist/images'));
-// });
-
-// Compresses png files and outputs them to dist/img
-// gulp.task('pngImages', function(){
-// 	return gulp.src(paths.pngImages)
-// 		.pipe(imageminPngcrush({reduce: true})())
-// 		.pipe(gulp.dest('dist/images/'));
-// });
-
-// gulp.task('svgImages', function(){
-// 	return gulp.src(paths.svgImages)
-// 		.pipe(svgmin())
-// 		.pipe(gulp.dest('dist/images/'));
-// });
-
 // Minifies HTML and outputs it to dist
 gulp.task('content', function(){
 	return gulp.src(paths.content)
@@ -103,15 +57,16 @@ gulp.task('content', function(){
 		.pipe(gulp.dest('dist'));
 });
 
+gulp.task('copy', function(){
+	return gulp.src(paths.copy)
+		.pipe($.copy('dist'))
+})
+
 // Watches for changes and execute appropriate tasks
 gulp.task('watch', function(){
 	gulp.watch('src/js/*.js', ['scripts']);
 	gulp.watch('src/css/*.css', ['styles']);
-	//gulp.watch('src/images/*', ['images']);
-	//gulp.watch('src/images/*.jpg', ['jpgImages']);
-	//gulp.watch('src/images/*.png', ['pngImages']);
-	//gulp.watch('src/images/*.svg', ['svgImages']);
-	//gulp.watch('src/*.html', ['content']);
+	gulp.watch('src/*.html', ['content']);
 });
 
 gulp.task('default', ['scripts', 'styles', 'content', 'watch']);
