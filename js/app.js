@@ -132,7 +132,7 @@ var ViewModel = function(){
 		placeItem.marker = marker;
 
 			$.ajax({
-				url: 'https://api.oursquare.com/v2/venues/' + placeItem.id() + '?client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815',
+				url: 'https://api.foursquare.com/v2/venues/' + placeItem.id() + '?client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815',
 				dataType: "json",
 				success: function(data) {
 					var result = data.response.venue;
@@ -185,9 +185,12 @@ var ViewModel = function(){
 					var infowindow = new google.maps.InfoWindow({
 						content: contentString
 					});
-
+					
+					var infoWindowsOpenCurrently;
 					google.maps.event.addListener(placeItem.marker, 'click', function () {
+					typeof infoWindowsOpenCurrently !== 'undefined' && infoWindowsOpenCurrently.close();	
 					infowindow.open(map, this);
+					infoWindowsOpenCurrently = infowindow;
 					toggleBounce();
 					setTimeout(toggleBounce, 500);
 					});
