@@ -157,7 +157,6 @@ var ViewModel = function () {
                 placeItem.name(result.name);
 
                 // The following lines handle inconsistent results from Foursquare
-                // Some locations have a phone number, some don't, and so on
                 // Check each result for properties, if the property exists,
                 // add it to the Place constructor
                 // Credit https://discussions.udacity.com/t/foursquare-results-undefined-until-the-second-click-on-infowindow/39673/2
