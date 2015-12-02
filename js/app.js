@@ -1,3 +1,4 @@
+// Initial array of locations
 var locations = [
 	{
 		name: "Fast Lane Coffee",
@@ -178,7 +179,8 @@ var ViewModel = function(){
 
 				placeItem.canonicalUrl(result.canonicalUrl);
 
-				// Infowindow code in success function so that error message displayed in infowindow works
+				// Infowindow code is in the success function so that the error message 
+				// displayed in infowindow works
 				var contentString = '<h4>' + placeItem.name() + '</h4><img src="' + 
 				placeItem.photoPrefix() + '110x110' + placeItem.photoSuffix() +
 				'" alt="Image Location"><p>Information from Foursquare:</p><p>' +
@@ -215,7 +217,6 @@ var ViewModel = function(){
 		}
 
 		// This event listener is needed to make the error message on AJAX error display
-		// Add infowindows credit http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
 		google.maps.event.addListener(marker, 'click', function () {
 		infowindow.open(map, this);
 		toggleBounce();
@@ -223,9 +224,13 @@ var ViewModel = function(){
 		});
 	});
 
+	// Activate the appropriate marker when the user clicks a list item
 	self.showInfo = function(placeItem) {
 		google.maps.event.trigger(placeItem.marker, 'click');
 	};
+
+	// Filter markers per user input
+	// Credit http://codepen.io/prather-mcs/pen/KpjbNN?editors=001
 
 	// Array containing only the markers based on search
 	self.visible = ko.observableArray();
@@ -235,17 +240,16 @@ var ViewModel = function(){
 		self.visible.push(place);
 	});
 
-	// Keep track of user input
+	// Track user input
 	self.userInput = ko.observable('');
 
 	// Filter markers: Set all markers to not visible. 
-	// Only display them if they match user search input
-	// Credit http://codepen.io/prather-mcs/pen/KpjbNN?editors=001
+	// Only display them if user search input is included in the name 
 	self.filterMarkers = function() {
 		var searchInput = self.userInput().toLowerCase();
 		self.visible.removeAll();
 		// Compare the name of each place to user input
-		// If it matches, display the place and marker
+		// If user input is included in the name, display the place and marker
 		self.placeList().forEach(function(place) {
 			place.marker.setVisible(false);
 		if (place.name().toLowerCase().indexOf(searchInput) !== -1) {
