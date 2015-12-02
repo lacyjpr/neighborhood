@@ -186,7 +186,7 @@ var ViewModel = function(){
 						content: contentString
 					});
 					
-					google.maps.event.addListener(placeItem.marker, 'click', function () 
+					google.maps.event.addListener(placeItem.marker, 'click', function () { 
 					infowindow.open(map, this);
 					toggleBounce();
 					setTimeout(toggleBounce, 500);
