@@ -1,3 +1,10 @@
+// JSLint directives
+/*jslint browser: true */
+/* global
+    google,
+    ko,
+    $
+*/
 // Initial array of locations
 var locations = [
     {
@@ -76,13 +83,13 @@ function initMap() {
         center: {lat: 44.635371, lng: -124.053291},
         zoom: 14
     });
-ko.applyBindings(new ViewModel());
+    ko.applyBindings(new ViewModel());
 }
 
 // Alert the user if google maps isn't working
 function googleError() {
     "use strict";
-    document.getElementById('map').innerHTML = "<h1>Google Maps is not loading</h1>";
+    document.getElementById('map').innerHTML = "<h2>Google Maps is not loading. Please try refreshing the page later.</h2>";
 }
 
 //Place constructor
@@ -184,29 +191,30 @@ var ViewModel = function () {
 
                 // Infowindow code is in the success function so that the error message
                 // displayed in infowindow works properly, instead of a mangled infowindow
+                // Credit https://discussions.udacity.com/t/trouble-with-infowindows-and-contentstring/39853/14
 
                 // Content of the infowindow
                 var contentString = '<h4>' + placeItem.name() + '</h4><img src="' +
-                    placeItem.photoPrefix() + '110x110' + placeItem.photoSuffix() +
-                    '" alt="Image Location"><p>Information from Foursquare:</p><p>' +
-                    placeItem.phone() + '</p><p>' + placeItem.address() + '</p><p>' +
-                    placeItem.description() + '</p><p>Rating: ' + placeItem.rating() +
-                    '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() +
-                    '</a></p><p><a target="_blank" href=' + placeItem.canonicalUrl() +
-                    '>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' +
-                    placeItem.lat() + ',' + placeItem.lng() + '>Directions</a></p>';
+                        placeItem.photoPrefix() + '110x110' + placeItem.photoSuffix() +
+                        '" alt="Image Location"><p>Information from Foursquare:</p><p>' +
+                        placeItem.phone() + '</p><p>' + placeItem.address() + '</p><p>' +
+                        placeItem.description() + '</p><p>Rating: ' + placeItem.rating() +
+                        '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() +
+                        '</a></p><p><a target="_blank" href=' + placeItem.canonicalUrl() +
+                        '>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' +
+                        placeItem.lat() + ',' + placeItem.lng() + '>Directions</a></p>';
 
                 //Add infowindows credit http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
                 google.maps.event.addListener(placeItem.marker, 'click', function () {
-                infowindow.open(map, this);
-                toggleBounce();
-                // Stop the bouncing animation after half a second
-                setTimeout(toggleBounce, 500);
-                infowindow.setContent(contentString);
+                    infowindow.open(map, this);
+                    toggleBounce();
+                    // Stop the bouncing animation after half a second
+                    setTimeout(toggleBounce, 500);
+                    infowindow.setContent(contentString);
                 });
             },
             // Alert the user on error. Set messages in the DOM and infowindow
-            error: function(e) {
+            error: function (e) {
                 infowindow.setContent('<h5>Foursquare data is unavailable. Please try refreshing later.</h5>');
                 document.getElementById("error").innerHTML = "<h4>Foursquare data is unavailable. Please try refreshing later.</h4>";
             }
@@ -214,23 +222,23 @@ var ViewModel = function () {
 
         // Bounce animation called by the event listener
         function toggleBounce() {
-        if(placeItem.marker.getAnimation() !== null) {
-            placeItem.marker.setAnimation(null);
-        } else {
-            placeItem.marker.setAnimation(google.maps.Animation.BOUNCE);
+            if (placeItem.marker.getAnimation() !== null) {
+                placeItem.marker.setAnimation(null);
+            } else {
+                placeItem.marker.setAnimation(google.maps.Animation.BOUNCE);
             }
         }
 
         // This event listener is necessary to make the error message on AJAX error display
         google.maps.event.addListener(marker, 'click', function () {
-        infowindow.open(map, this);
-        toggleBounce();
-        setTimeout(toggleBounce, 500);
+            infowindow.open(map, this);
+            toggleBounce();
+            setTimeout(toggleBounce, 500);
         });
     });
 
     // Activate the appropriate marker when the user clicks a list item
-    self.showInfo = function(placeItem) {
+    self.showInfo = function (placeItem) {
         google.maps.event.trigger(placeItem.marker, 'click');
     };
 
@@ -241,7 +249,7 @@ var ViewModel = function () {
     self.visible = ko.observableArray();
 
     // All markers are visible by default before any user input
-    self.placeList().forEach(function(place) {
+    self.placeList().forEach(function (place) {
         self.visible.push(place);
     });
 
@@ -250,19 +258,19 @@ var ViewModel = function () {
 
     // If user input is included in the place name, make it and its marker visible
     // Otherwise, remove the place & marker
-    self.filterMarkers = function() {
+    self.filterMarkers = function () {
         // Set all markers and places to not visible.
         var searchInput = self.userInput().toLowerCase();
         self.visible.removeAll();
-        self.placeList().forEach(function(place) {
+        self.placeList().forEach(function (place) {
             place.marker.setVisible(false);
-        // Compare the name of each place to user input
-        // If user input is included in the name, set the place and marker as visible
-        if (place.name().toLowerCase().indexOf(searchInput) !== -1) {
-            self.visible.push(place);
+            // Compare the name of each place to user input
+            // If user input is included in the name, set the place and marker as visible
+            if (place.name().toLowerCase().indexOf(searchInput) !== -1) {
+                self.visible.push(place);
             }
         });
-        self.visible().forEach(function(place){
+        self.visible().forEach(function (place) {
             place.marker.setVisible(true);
         });
     };
