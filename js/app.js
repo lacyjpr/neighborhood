@@ -237,7 +237,7 @@ var ViewModel = function(){
 	// Array containing only the markers based on search
 	self.visible = ko.observableArray();
 
-	// All markers are visible by default before any user search
+	// All markers are visible by default before any user input
 	self.placeList().forEach(function(place) {
 		self.visible.push(place);
 	});
@@ -245,15 +245,16 @@ var ViewModel = function(){
 	// Track user input
 	self.userInput = ko.observable('');
 
-	// Filter markers: Set all markers to not visible. 
-	// Only display them if user search input is included in the name 
+	// If user input is included in the place name, make it and its marker visible
+	// Otherwise, remove the place & marker
 	self.filterMarkers = function() {
+		// Set all markers and places to not visible. 
 		var searchInput = self.userInput().toLowerCase();
 		self.visible.removeAll();
-		// Compare the name of each place to user input
-		// If user input is included in the name, display the place and marker
 		self.placeList().forEach(function(place) {
 			place.marker.setVisible(false);
+		// Compare the name of each place to user input
+		// If user input is included in the name, set the place and marker as visible
 		if (place.name().toLowerCase().indexOf(searchInput) !== -1) {
 			self.visible.push(place);
 			}
