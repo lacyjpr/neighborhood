@@ -183,15 +183,15 @@ var ViewModel = function(){
 
 
 					// Infowindow code in success function so error message in infowindow works
-					var contentString = '<h4>' + placeItem.name() + '</h4><img src="' 
-					+ placeItem.photoPrefix() + '110x110' + placeItem.photoSuffix() 
-					+ '" alt="Image Location"><p>Information from Foursquare:</p><p>' 
-					+ placeItem.phone() + '</p><p>' + placeItem.address() + '</p><p>' 
-					+ placeItem.description() + '</p><p>Rating: '+ placeItem.rating() 
-					+ '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() 
-					+ '</a></p><p><a target="_blank" href=' + placeItem.canonicalUrl() 
-					+ '>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' 
-					+ placeItem.lat() + ',' + placeItem.lng() + '>Directions</a></p>';
+					var contentString = '<h4>' + placeItem.name() + '</h4><img src="' + 
+					placeItem.photoPrefix() + '110x110' + placeItem.photoSuffix() +
+					'" alt="Image Location"><p>Information from Foursquare:</p><p>' +
+					placeItem.phone() + '</p><p>' + placeItem.address() + '</p><p>' +
+					placeItem.description() + '</p><p>Rating: '+ placeItem.rating() +
+					'</p><p><a href=' + placeItem.url() + '>' + placeItem.url() +
+					'</a></p><p><a target="_blank" href=' + placeItem.canonicalUrl() +
+					'>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' + 
+					placeItem.lat() + ',' + placeItem.lng() + '>Directions</a></p>';
 
 					//Add infowindows credit http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
 					google.maps.event.addListener(placeItem.marker, 'click', function () { 
@@ -269,9 +269,3 @@ var ViewModel = function(){
 	};
 
 }; // ViewModel
-
-
-
-
-
-
