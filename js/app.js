@@ -160,7 +160,6 @@ var ViewModel = function(){
 					}
 					console.log(placeItem.photoPrefix());
 
-					var bestPhoto = result.hasOwnProperty('bestPhoto') ? result.bestPhoto : '';
 					if (bestPhoto.hasOwnProperty('suffix')) {
 					placeItem.photoSuffix(bestPhoto.suffix || '');
 					}
@@ -181,8 +180,7 @@ var ViewModel = function(){
 					placeItem.canonicalUrl(result.canonicalUrl);
 					console.log(placeItem.canonicalUrl());
 
-
-					// Infowindow code in success function so error message in infowindow works
+					// Infowindow code in success function so error message displayed in infowindow works
 					var contentString = '<h4>' + placeItem.name() + '</h4><img src="' + 
 					placeItem.photoPrefix() + '110x110' + placeItem.photoSuffix() +
 					'" alt="Image Location"><p>Information from Foursquare:</p><p>' +
@@ -198,7 +196,7 @@ var ViewModel = function(){
 					infowindow.open(map, this);
 					toggleBounce();
 					setTimeout(toggleBounce, 500);
-					infowindow.setContent(contentString)
+					infowindow.setContent(contentString);
 					});
 				},
 				error: function(e) {
