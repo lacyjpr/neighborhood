@@ -1,8 +1,8 @@
 var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	minifyCSS = require('gulp-minify-css'),
-	htmlmin = require('gulp-htmlmin'),
-	copy = require('gulp-copy')
+	htmlmin = require('gulp-htmlmin')
+	//copy = require('gulp-copy')
 	//critical = require('critical'),
 	//rename = require('gulp-rename'),
 
@@ -59,8 +59,8 @@ gulp.task('content', function(){
 
 gulp.task('copy', function(){
 	return gulp.src(paths.copy)
-		.pipe($.copy('dist'))
-})
+		.pipe(gulp.dest('dist'));
+});
 
 // Watches for changes and execute appropriate tasks
 gulp.task('watch', function(){
@@ -69,7 +69,7 @@ gulp.task('watch', function(){
 	gulp.watch('src/*.html', ['content']);
 });
 
-gulp.task('default', ['scripts', 'styles', 'content', 'watch']);
+gulp.task('default', ['scripts', 'styles', 'content', 'copy', 'watch']);
 //gulp.task('default', ['scripts', 'styles', 'jpgImages', 'pngImages', 'svgImages', 'content', 'watch']);
 //gulp.task('default', ['scripts', 'styles', 'images', 'content', 'watch']);
 //
