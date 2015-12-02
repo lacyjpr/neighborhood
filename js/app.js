@@ -102,100 +102,110 @@ var Place = function(data) {
 	this.contentString = ko.observable('');
 };
 
+// ViewModel
 var ViewModel = function(){
+	// Make this accessible
 	var self = this;
 
 	// Create an array of all places
 	// Credit https://www.udacity.com/course/viewer#!/c-ud989-nd/l-3406489055/e-3464818693/m-3464818694
 	this.placeList = ko.observableArray([]);
 
-	// Create Place objects for each item in locations
+	// Create Place objects for each item in locations & store them in the above array
 	// Credit https://www.udacity.com/course/viewer#!/c-ud989-nd/l-3406489055/e-3464818693/m-3464818694
 	locations.forEach(function(placeItem) {
 		self.placeList.push( new Place(placeItem));
 	}); 
 
+	// Initialize the infowindow
 	var infowindow = new google.maps.InfoWindow();
 
 	// Place markers
 	// Credit https://github.com/kacymckibben/project-5-app.git
 	var marker;
 
+	// For each place, set markers, request Foursquare data, and set event listeners for the infowindow
 	self.placeList().forEach(function(placeItem){
 
+		// Define markers for each place
 		marker = new google.maps.Marker({
 			position: new google.maps.LatLng(placeItem.lat(),placeItem.lng()),
 			map: map,
 			animation: google.maps.Animation.DROP,
-			title: placeItem.name()
 		});
 		placeItem.marker = marker;
 
-			$.ajax({
-				url: 'https://api.foursquare.com/v2/venues/' + placeItem.id() + '?client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815',
-				dataType: "json",
-				success: function(data) {
-					var result = data.response.venue;
+		// Make AJAX request to Foursquare
+		$.ajax({
+			url: 'https://api.foursquare.com/v2/venues/' + placeItem.id() + '?client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815',
+			dataType: "json",
+			success: function(data) {
+				// Make results easier to handle
+				var result = data.response.venue;
 
-					placeItem.name(result.name);
+				placeItem.name(result.name);
 
-					// Check each result for properties, if the property exists, add it to the Place constructor
-					// Credit https://discussions.udacity.com/t/foursquare-results-undefined-until-the-second-click-on-infowindow/39673/2
-					var contact = result.hasOwnProperty('contact') ? result.contact : '';
-					if (contact.hasOwnProperty('formattedPhone')) {
-					placeItem.phone(contact.formattedPhone || '');
-					}
-
-					var location = result.hasOwnProperty('location') ? result.location : '';
-					if (location.hasOwnProperty('address')) {
-					placeItem.address(location.address || '');
-					}
-
-					var bestPhoto = result.hasOwnProperty('bestPhoto') ? result.bestPhoto : '';
-					if (bestPhoto.hasOwnProperty('prefix')) {
-					placeItem.photoPrefix(bestPhoto.prefix || '');
-					}
-
-					if (bestPhoto.hasOwnProperty('suffix')) {
-					placeItem.photoSuffix(bestPhoto.suffix || '');
-					}
-
-					var description = result.hasOwnProperty('description') ? result.description : '';
-					placeItem.description(description || '');
-
-					var rating = result.hasOwnProperty('rating') ? result.rating : '';
-					placeItem.rating(rating || 'none');
-
-					var url = result.hasOwnProperty('url') ? result.url : '';
-					placeItem.url(url || '');
-
-					placeItem.canonicalUrl(result.canonicalUrl);
-
-					// Infowindow code in success function so error message displayed in infowindow works
-					var contentString = '<h4>' + placeItem.name() + '</h4><img src="' + 
-					placeItem.photoPrefix() + '110x110' + placeItem.photoSuffix() +
-					'" alt="Image Location"><p>Information from Foursquare:</p><p>' +
-					placeItem.phone() + '</p><p>' + placeItem.address() + '</p><p>' +
-					placeItem.description() + '</p><p>Rating: '+ placeItem.rating() +
-					'</p><p><a href=' + placeItem.url() + '>' + placeItem.url() +
-					'</a></p><p><a target="_blank" href=' + placeItem.canonicalUrl() +
-					'>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' + 
-					placeItem.lat() + ',' + placeItem.lng() + '>Directions</a></p>';
-
-					//Add infowindows credit http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
-					google.maps.event.addListener(placeItem.marker, 'click', function () { 
-					infowindow.open(map, this);
-					toggleBounce();
-					setTimeout(toggleBounce, 500);
-					infowindow.setContent(contentString);
-					});
-				},
-				error: function(e) {
-					infowindow.setContent('<h5>Foursquare data is unavailable. Please try refreshing later.</h5>');
-					document.getElementById("error").innerHTML = "<h4>Foursquare data is unavailable. Please try refreshing later.</h4>";
+				// Check each result for properties, if the property exists, 
+				// add it to the Place constructor
+				// Credit https://discussions.udacity.com/t/foursquare-results-undefined-until-the-second-click-on-infowindow/39673/2
+				var contact = result.hasOwnProperty('contact') ? result.contact : '';
+				if (contact.hasOwnProperty('formattedPhone')) {
+				placeItem.phone(contact.formattedPhone || '');
 				}
-			});
 
+				var location = result.hasOwnProperty('location') ? result.location : '';
+				if (location.hasOwnProperty('address')) {
+				placeItem.address(location.address || '');
+				}
+
+				var bestPhoto = result.hasOwnProperty('bestPhoto') ? result.bestPhoto : '';
+				if (bestPhoto.hasOwnProperty('prefix')) {
+				placeItem.photoPrefix(bestPhoto.prefix || '');
+				}
+
+				if (bestPhoto.hasOwnProperty('suffix')) {
+				placeItem.photoSuffix(bestPhoto.suffix || '');
+				}
+
+				var description = result.hasOwnProperty('description') ? result.description : '';
+				placeItem.description(description || '');
+
+				var rating = result.hasOwnProperty('rating') ? result.rating : '';
+				placeItem.rating(rating || 'none');
+
+				var url = result.hasOwnProperty('url') ? result.url : '';
+				placeItem.url(url || '');
+
+				placeItem.canonicalUrl(result.canonicalUrl);
+
+				// Infowindow code in success function so that error message displayed in infowindow works
+				var contentString = '<h4>' + placeItem.name() + '</h4><img src="' + 
+				placeItem.photoPrefix() + '110x110' + placeItem.photoSuffix() +
+				'" alt="Image Location"><p>Information from Foursquare:</p><p>' +
+				placeItem.phone() + '</p><p>' + placeItem.address() + '</p><p>' +
+				placeItem.description() + '</p><p>Rating: '+ placeItem.rating() +
+				'</p><p><a href=' + placeItem.url() + '>' + placeItem.url() +
+				'</a></p><p><a target="_blank" href=' + placeItem.canonicalUrl() +
+				'>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' + 
+				placeItem.lat() + ',' + placeItem.lng() + '>Directions</a></p>';
+
+				//Add infowindows credit http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
+				google.maps.event.addListener(placeItem.marker, 'click', function () { 
+				infowindow.open(map, this);
+				toggleBounce();
+				// Stop the bouncing animation after half a second
+				setTimeout(toggleBounce, 500);
+				infowindow.setContent(contentString);
+				});
+			},
+			// Alert the user on error. Set messages in the DOM and infowindow
+			error: function(e) {
+				infowindow.setContent('<h5>Foursquare data is unavailable. Please try refreshing later.</h5>');
+				document.getElementById("error").innerHTML = "<h4>Foursquare data is unavailable. Please try refreshing later.</h4>";
+			}
+		});
+
+		// Bounce animation called by the event listener
 		function toggleBounce() {
 		if(placeItem.marker.getAnimation() !== null) {
 			placeItem.marker.setAnimation(null);
@@ -210,22 +220,12 @@ var ViewModel = function(){
 		infowindow.open(map, this);
 		toggleBounce();
 		setTimeout(toggleBounce, 500);
-		// infowindow.setContent('<h4>' + placeItem.name() + '</h4><img src="' + placeItem.photoPrefix() + 
-		// 	'110x110' + placeItem.photoSuffix() +
-		// 	'" alt="Image Location"><p>Information from Foursquare:</p><p>' + placeItem.phone() + 
-		// 	'</p><p>' + placeItem.address() + '</p><p>' + placeItem.description() + '</p><p>Rating: '
-		// 	+ placeItem.rating() + '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() 
-		// 	+ '</a></p><p><a target="_blank" href=' 
-		// 	+ placeItem.canonicalUrl() + '>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' + placeItem.lat() + 
-		// 	',' + placeItem.lng() + '>Directions</a></p>')
 		});
 	});
 
 	self.showInfo = function(placeItem) {
 		google.maps.event.trigger(placeItem.marker, 'click');
 	};
-
-
 
 	// Array containing only the markers based on search
 	self.visible = ko.observableArray();
