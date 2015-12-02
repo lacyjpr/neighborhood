@@ -180,7 +180,9 @@ var ViewModel = function(){
 				placeItem.canonicalUrl(result.canonicalUrl);
 
 				// Infowindow code is in the success function so that the error message 
-				// displayed in infowindow works
+				// displayed in infowindow works properly, instead of a mangled infowindow
+
+				// Content of the infowindow
 				var contentString = '<h4>' + placeItem.name() + '</h4><img src="' + 
 				placeItem.photoPrefix() + '110x110' + placeItem.photoSuffix() +
 				'" alt="Image Location"><p>Information from Foursquare:</p><p>' +
@@ -216,7 +218,7 @@ var ViewModel = function(){
 			}
 		}
 
-		// This event listener is needed to make the error message on AJAX error display
+		// This event listener is necessary to make the error message on AJAX error display
 		google.maps.event.addListener(marker, 'click', function () {
 		infowindow.open(map, this);
 		toggleBounce();
