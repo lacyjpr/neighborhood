@@ -186,11 +186,8 @@ var ViewModel = function(){
 						content: contentString
 					});
 					
-					var infoWindowsOpenCurrently;
-					google.maps.event.addListener(placeItem.marker, 'click', function () {
-					typeof infoWindowsOpenCurrently !== 'undefined' && infoWindowsOpenCurrently.close();	
+					google.maps.event.addListener(placeItem.marker, 'click', function () 
 					infowindow.open(map, this);
-					infoWindowsOpenCurrently = infowindow;
 					toggleBounce();
 					setTimeout(toggleBounce, 500);
 					});
