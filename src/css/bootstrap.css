@@ -1,0 +1,29 @@
+html,
+body {
+  font-family: Arial, Sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#map {
+  height: 100%;
+}
+
+input {
+  position: relative;
+  left: 20px;
+  background-color: #000;
+}
+
+main,
+.row,
+.col-md-9 {
+  height: 100%;
+  background-color: #000;
+}
+
+.col-md-3 {
+  background-color: #000;
+  color: #fff;
+}
