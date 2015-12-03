@@ -148,7 +148,8 @@ var ViewModel = function () {
 
         // Make AJAX request to Foursquare
         $.ajax({
-            url: 'https://api.foursquare.com/v2/venues/' + placeItem.id() + '?client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815',
+            url: 'https://api.foursquare.com/v2/venues/' + placeItem.id() +
+            '?client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815',
             dataType: "json",
             success: function (data) {
                 // Make results easier to handle
