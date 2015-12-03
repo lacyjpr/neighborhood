@@ -1,7 +1,7 @@
 {
   "name": "neighborhood-map",
   "version": "1.0.0",
-  "description": "Map of Coffee in Newport, Oregon",
+  "description": "### Neighborhood Map Project #5 For Udacity FEND",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,7 +19,6 @@
   "devDependencies": {
     "critical": "^0.6.0",
     "gulp": "^3.9.0",
-    "gulp-copy": "0.0.2",
     "gulp-htmlmin": "^1.2.0",
     "gulp-minify-css": "^1.2.2",
     "gulp-rename": "^1.2.2",
