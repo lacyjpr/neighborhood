@@ -28,7 +28,7 @@ gulp.task('critical', ['copystyles'], function () {
         base: 'src/',
         src: 'index.html',
         styleTarget: 'css/bootstrap.min.css',
-        htmlTarget: 'index.html',
+        htmlTarget: 'src/index.html',
         width: 320,
         height: 480,
         minify: true
