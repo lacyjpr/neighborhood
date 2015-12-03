@@ -148,7 +148,7 @@ var ViewModel = function () {
 
         // Make AJAX request to Foursquare
         $.ajax({
-            url: 'https://api.foursquare.com/v2/venues/' + placeItem.id() + '?client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815',
+            url: 'https://api.oursquare.com/v2/venues/' + placeItem.id() + '?client_id=NONGGLXBKX5VFFIKKEK1HXQPFAFVMEBTRXBWJUPEN4K14JUE&client_secret=ZZDD1SLJ4PA2X4AJ4V23OOZ53UM4SFZX0KORGWP5TZDK4YYJ&v=20130815',
             dataType: "json",
             success: function (data) {
                 // Make results easier to handle
@@ -208,9 +208,11 @@ var ViewModel = function () {
                 //Add infowindows credit http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
                 google.maps.event.addListener(placeItem.marker, 'click', function () {
                     infowindow.open(map, this);
-                    toggleBounce();
-                    // Stop the bouncing animation after half a second
-                    setTimeout(toggleBounce, 500);
+                    // Bounce animation credit https://github.com/Pooja0131/FEND-Neighbourhood-Project5a/blob/master/js/app.js
+                    placeItem.marker.setAnimation(google.maps.Animation.BOUNCE);
+                    setTimeout(function () {
+                        placeItem.marker.setAnimation(null);
+                    }, 500);
                     infowindow.setContent(contentString);
                 });
             },
@@ -221,20 +223,13 @@ var ViewModel = function () {
             }
         });
 
-        // Bounce animation called by the event listener
-        function toggleBounce() {
-            if (placeItem.marker.getAnimation() !== null) {
-                placeItem.marker.setAnimation(null);
-            } else {
-                placeItem.marker.setAnimation(google.maps.Animation.BOUNCE);
-            }
-        }
-
         // This event listener is necessary to make the error message on AJAX error display
         google.maps.event.addListener(marker, 'click', function () {
             infowindow.open(map, this);
-            toggleBounce();
-            setTimeout(toggleBounce, 500);
+            placeItem.marker.setAnimation(google.maps.Animation.BOUNCE);
+            setTimeout(function () {
+                placeItem.marker.setAnimation(null);
+            }, 500);
         });
     });
 
