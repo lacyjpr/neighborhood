@@ -1,10 +1,3 @@
-// JSLint directives
-/*jslint browser: true */
-/* global
-    google,
-    ko,
-    $
-*/
 // Initial array of locations
 var locations = [
     {
@@ -92,7 +85,7 @@ function googleError() {
     document.getElementById('map').innerHTML = "<h2>Google Maps is not loading. Please try refreshing the page later.</h2>";
 }
 
-//Place constructor
+// Place constructor
 // Credit https://discussions.udacity.com/t/having-trouble-accessing-data-outside-an-ajax-request/39072/10
 var Place = function (data) {
     "use strict";
