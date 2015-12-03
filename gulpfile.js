@@ -31,15 +31,9 @@ gulp.task('critical', ['copystyles'], function () {
         htmlTarget: 'src/index.html',
         width: 320,
         height: 480,
-        minify: true
+        minify: false
     });
 });
-
-// gulp.task('critical', function () {
-//     return gulp.src('src/*.html')
-//         .pipe(critical({base: 'src/', inline: true, css: ['bootstrap.min.css']}))
-//         .pipe(gulp.dest('dist'));
-// });
 
 // Uglifies js files and outputs them to dist/js
 gulp.task('scripts', function(){
