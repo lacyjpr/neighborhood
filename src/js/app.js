@@ -76,6 +76,7 @@ function initMap() {
         center: {lat: 44.635371, lng: -124.053291},
         zoom: 14
     });
+    // Start the ViewModel here so it doesn't initialize before Google Maps loads
     ko.applyBindings(new ViewModel());
 }
 
@@ -115,6 +116,7 @@ var ViewModel = function () {
     // Credit https://www.udacity.com/course/viewer#!/c-ud989-nd/l-3406489055/e-3464818693/m-3464818694
     this.placeList = ko.observableArray([]);
 
+    // Call the Place constructor
     // Create Place objects for each item in locations & store them in the above array
     // Credit https://www.udacity.com/course/viewer#!/c-ud989-nd/l-3406489055/e-3464818693/m-3464818694
     locations.forEach(function (placeItem) {
@@ -124,11 +126,11 @@ var ViewModel = function () {
     // Initialize the infowindow
     var infowindow = new google.maps.InfoWindow();
 
-    // Place markers
-    // Credit https://github.com/kacymckibben/project-5-app.git
+    // Initialize marker
     var marker;
 
     // For each place, set markers, request Foursquare data, and set event listeners for the infowindow
+    // Credit https://github.com/kacymckibben/project-5-app.git
     self.placeList().forEach(function (placeItem) {
 
         // Define markers for each place
@@ -199,7 +201,7 @@ var ViewModel = function () {
                         '>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' +
                         placeItem.lat() + ',' + placeItem.lng() + '>Directions</a></p>';
 
-                //Add infowindows credit http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
+                // Add infowindows credit http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
                 google.maps.event.addListener(placeItem.marker, 'click', function () {
                     infowindow.open(map, this);
                     // Bounce animation credit https://github.com/Pooja0131/FEND-Neighbourhood-Project5a/blob/master/js/app.js
@@ -217,7 +219,7 @@ var ViewModel = function () {
             }
         });
 
-        // This event listener is necessary to make the error message on AJAX error display
+        // This event listener makes the error message on AJAX error display in the infowindow
         google.maps.event.addListener(marker, 'click', function () {
             infowindow.open(map, this);
             placeItem.marker.setAnimation(google.maps.Animation.BOUNCE);
