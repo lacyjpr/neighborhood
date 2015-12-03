@@ -69,6 +69,26 @@ var locations = [
 ];
 
 // Initialize the map
+
+// Prevent Roboto from loading for performance
+// Credit http://stackoverflow.com/questions/25523806/google-maps-v3-prevent-api-from-loading-roboto-font
+var head = document.getElementsByTagName('head')[0];
+
+// Save the original method
+var insertBefore = head.insertBefore;
+
+// Replace it!
+head.insertBefore = function (newElement, referenceElement) {
+
+    if (newElement.href && newElement.href.indexOf('https://fonts.googleapis.com/css?family=Roboto') === 0) {
+
+        console.info('Prevented Roboto from loading!');
+        return;
+    }
+
+    insertBefore.call(head, newElement, referenceElement);
+};
+
 var map;
 function initMap() {
     "use strict";
