@@ -2,8 +2,8 @@ var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	minifyCSS = require('gulp-minify-css'),
 	htmlmin = require('gulp-htmlmin')
-	// critical = require('critical'),
-	// rename = require('gulp-rename'),
+	critical = require('critical'),
+	rename = require('gulp-rename')
 
 
 var paths = {
@@ -14,25 +14,31 @@ var paths = {
 }
 
 // copy styles for critical
-// gulp.task('copystyles', function(){
-// 	return gulp.src(['src/css/bootstrap.min.css'])
-// 		.pipe(rename ({
-// 			basename: "site"
-// 		}))
-// 		.pipe(gulp.dest('src/css'));
-// });
+gulp.task('copystyles', function(){
+	return gulp.src(['src/css/bootstrap.min.css'])
+		.pipe(rename ({
+			basename: "site"
+		}))
+		.pipe(gulp.dest('src/css'));
+});
 
 //inline critical css
-// gulp.task('critical', ['copystyles'], function(){
-// 	critical.generateInline({
-// 		base: 'src/',
-// 		src: 'index.html',
-// 		styleTarget: 'bootstrap.min.css',
-// 		htmlTarget: 'src/index.html',
-// 		width: 320,
-// 		height: 480,
-// 		minify: false
-// 	});
+gulp.task('critical', ['copystyles'], function () {
+    critical.generateInline({
+        base: 'src/',
+        src: 'index.html',
+        styleTarget: 'css/bootstrap.min.css',
+        htmlTarget: 'index.html',
+        width: 320,
+        height: 480,
+        minify: true
+    });
+});
+
+// gulp.task('critical', function () {
+//     return gulp.src('src/*.html')
+//         .pipe(critical({base: 'src/', inline: true, css: ['bootstrap.min.css']}))
+//         .pipe(gulp.dest('dist'));
 // });
 
 // Uglifies js files and outputs them to dist/js
