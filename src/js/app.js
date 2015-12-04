@@ -1,61 +1,61 @@
 // Initial array of locations
 var locations = [
     {
-        name: "Fast Lane Coffee",
+        name: "Fast Lane Coffee,",
         lat: 44.64070053,
         lng: -124.05267986,
         id: "4d9a662a674ca14376eaba43"
     },
     {
-        name: "Central Roast",
+        name: "Central Roast,",
         lat: 44.648684,
         lng: -124.052467,
         id: "4e54fb65814df0239959f785"
     },
     {
-        name: "Dutch Bros. Coffee",
+        name: "Dutch Bros. Coffee,",
         lat: 44.62933649650506,
         lng: -124.06172633171082,
         id: "4ae9a73ff964a5208ab521e3"
     },
     {
-        name: "The Coffee House",
+        name: "The Coffee House,",
         lat: 44.631362557411194,
         lng: -124.050916,
         id: "4b9bd043f964a5204e2836e3"
     },
     {
-        name: "Bayscapes Coffee House",
+        name: "Bayscapes Coffee House,",
         lat: 44.63016470161697,
         lng: -124.05276088349126,
         id: "4e4455eb1838e44e898badeb"
     },
     {
-        name: "Carls Coffee",
+        name: "Carls Coffee,",
         lat: 44.638854379944675,
         lng: -124.0611189933332,
         id: "5116a3fce4b04e9f6ad94274"
     },
     {
-        name: "Dockside Coffee House Gallery",
+        name: "Dockside Coffee House Gallery,",
         lat: 44.630096,
         lng: -124.05267119407654,
         id: "4c55e6ccfd2ea59359727f2c"
     },
     {
-        name: "Surf Town Coffee Company",
+        name: "Surf Town Coffee Company,",
         lat: 44.62982165943548,
         lng: -124.05335751403604,
         id: "4c02a2e89a7920a1c0b5ce79"
     },
     {
-        name: "Starbucks",
+        name: "Starbucks,",
         lat: 44.63738090498442,
         lng: -124.05263566533459,
         id: "4bafb4d1f964a52080193ce3"
     },
     {
-        name: "Fins Coffee at the Oregon Coastal Aquarium",
+        name: "Fins Coffee at the Oregon Coastal Aquarium,",
         lat: 44.617662114530646,
         lng: -124.04709191325138,
         id: "51f42596498eabca282eba39"
@@ -170,7 +170,7 @@ var ViewModel = function () {
                 // Make results easier to handle
                 var result = data.response.venue;
 
-                placeItem.name(result.name);
+                // placeItem.name(result.name);
 
                 // The following lines handle inconsistent results from Foursquare
                 // Check each result for properties, if the property exists,
@@ -258,7 +258,7 @@ var ViewModel = function () {
     // credit https://github.com/Pooja0131/FEND-Neighbourhood-Project5a/blob/master/index.html
     self.listToggle = function() {
         var placeList = document.getElementById('list-view');
-        if (placeList.style.display === "inline-block") {
+        if (placeList.style.display === "" || placeList.style.display === "inline-block") {
             placeList.style.display = "none";
         } else {
             placeList.style.display = "inline-block";
