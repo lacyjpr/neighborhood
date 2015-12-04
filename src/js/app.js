@@ -254,6 +254,16 @@ var ViewModel = function () {
         google.maps.event.trigger(placeItem.marker, 'click');
     };
 
+    // Shows or hides the place list upon clicking this button
+    self.listToggle = function() {
+        var placeList = document.getElementById('list-view');
+        if (placeList.style.display === "inline-block") {
+            placeList.style.display = "none";
+        } else {
+            placeList.style.display = "inline-block";
+        }
+    };
+
     // Filter markers per user input
     // Credit http://codepen.io/prather-mcs/pen/KpjbNN?editors=001
 
