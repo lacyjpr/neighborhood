@@ -254,7 +254,8 @@ var ViewModel = function () {
         google.maps.event.trigger(placeItem.marker, 'click');
     };
 
-    // Shows or hides the place list upon clicking this button
+    // Toggle the place list
+    // credit https://github.com/Pooja0131/FEND-Neighbourhood-Project5a/blob/master/index.html
     self.listToggle = function() {
         var placeList = document.getElementById('list-view');
         if (placeList.style.display === "inline-block") {
