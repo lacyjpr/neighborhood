@@ -27,7 +27,7 @@ gulp.task('critical', ['copystyles'], function () {
     critical.generateInline({
         base: 'src/',
         src: 'index.html',
-        styleTarget: 'css/bootstrap.min.css',
+        styleTarget: 'src/css/bootstrap.min.css',
         htmlTarget: 'src/index.html',
         width: 320,
         height: 480,
