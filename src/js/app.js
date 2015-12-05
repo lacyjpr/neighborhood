@@ -145,7 +145,9 @@ var ViewModel = function () {
     });
 
     // Initialize the infowindow
-    var infowindow = new google.maps.InfoWindow();
+    var infowindow = new google.maps.InfoWindow({
+        maxWidth: 200
+    });
 
     // Initialize marker
     var marker;
