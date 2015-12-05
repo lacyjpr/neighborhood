@@ -269,7 +269,7 @@ var ViewModel = function () {
         console.log("navElements style display: " + navElements.style.display);
         console.log("computed style: " + computedStyle.display);
 
-        navElements.style.display = computedStyle.display !== "block" || computedStyle.display === "inline-block" ? "inline-block" : "none";
+        navElements.style.display = computedStyle.display !== "block" ? "inline-block" : "none";
     };
 
     // Toggle the nav elements when the hamburger menu is clicked
