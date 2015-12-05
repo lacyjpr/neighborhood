@@ -12,15 +12,15 @@ body {
 
 #pageTitle{
   position: fixed;
-  top: 50px;
-  left: 20px;
+  top: 0px;
+  left: 5%;
   width: 20%;
 }
 
 #search {
   position: fixed;
-  left: 20px;
-  top: 100px;
+  left: 5%;
+  top: 50px;
   height: 30px;
   width: 20%;
   font-size: 15px;
@@ -28,8 +28,8 @@ body {
 
 #toggleList {
   position: fixed;
-  top: 145px;
-  left: 20px;
+  top: 90px;
+  left: 5%;
   height: 30px;
   width: 20%;
   font-size: 12px;
@@ -41,8 +41,8 @@ body {
   position: fixed;
   height:35%;
   overflow: auto;
-  top: 185px;
-  left: 20px;
+  top: 125px;
+  left: 5%;
   width: 20%;
   background-color: #fff;
   margin: 0;
@@ -58,14 +58,15 @@ body {
 
     #pageTitle{
     position: fixed;
-    top: 50px;
+    top: 0px;
     width: 20%;
+    left: 5%;
     }
 
     #search {
     position: fixed;
-    left: 20px;
-    top: 80px;
+    left: 5%;
+    top: 30px;
     height: 30px;
     width: 20%;
     font-size: 8px;
@@ -73,8 +74,8 @@ body {
 
     #toggleList {
     position: fixed;
-    top: 125px;
-    left: 20px;
+    top: 75px;
+    left: 5%;
     height: 30px;
     width: 20%;
     font-size: 8px;
@@ -86,7 +87,7 @@ body {
     position: fixed;
     height:35%;
     overflow: auto;
-    top: 165px;
+    top: 115px;
     left: 20px;
     width: 20%;
     background-color: #fff;
