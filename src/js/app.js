@@ -94,7 +94,8 @@ function initMap() {
     "use strict";
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 44.635371, lng: -124.053291},
-        zoom: 14
+        zoom: 14,
+        disableDefaultUI: true
     });
     // Start the ViewModel here so it doesn't initialize before Google Maps loads
     ko.applyBindings(new ViewModel());
@@ -255,14 +256,18 @@ var ViewModel = function () {
     };
 
     // Toggle the place list
-    // credit https://github.com/Pooja0131/FEND-Neighbourhood-Project5a/blob/master/index.html
+    // credit https://discussions.udacity.com/t/toggle-list-button-weirdness/40245/2
     self.listToggle = function() {
         var placeList = document.getElementById('list-view');
-        if (placeList.style.display === "" || placeList.style.display === "inline-block") {
-            placeList.style.display = "none";
-        } else {
-            placeList.style.display = "inline-block";
-        }
+        var elem = document.getElementById('list-view');
+        var computedStyle = window.getComputedStyle(elem, null);
+
+        placeList.style.display = computedStyle.display !== "block" ? "inline-block" : "none";
+        // if (placeList.style.display === "" || placeList.style.display === "inline-block") {
+        //     placeList.style.display = "none";
+        // } else {
+        //     placeList.style.display = "inline-block";
+        // }
     };
 
     // Filter markers per user input
