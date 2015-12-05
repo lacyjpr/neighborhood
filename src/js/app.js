@@ -257,20 +257,36 @@ var ViewModel = function () {
         google.maps.event.trigger(placeItem.marker, 'click');
     };
 
+    // Toggle the nav elements when the hamburger menu is clicked
+    // Credit http://stackoverflow.com/questions/29592717/i-am-trying-to-hide-show-menu-from-an-aimg-with-jquery
+
+    $("#nav").hide();
+    $("#hamburger").click(function() {
+        $("#nav").toggle();
+    });
+
+    // Hide the nav elements when the user clicks outside
+    // Credit http://stackoverflow.com/questions/11545518/hide-a-div-when-clicked-outside-of-it
+    // $(document).click(function() {
+    //     if( this.id != 'nav' || 'hamburger') {
+    //     $("#nav").hide();
+    //     }
+    // });
+
     // Toggle the place list
     // credit https://discussions.udacity.com/t/toggle-list-button-weirdness/40245/2
-    self.listToggle = function() {
-        var placeList = document.getElementById('list-view');
-        var elem = document.getElementById('list-view');
-        var computedStyle = window.getComputedStyle(elem, null);
+    // self.listToggle = function() {
+    //     var placeList = document.getElementById('list-view');
+    //     var elem = document.getElementById('list-view');
+    //     var computedStyle = window.getComputedStyle(elem, null);
 
-        placeList.style.display = computedStyle.display !== "block" ? "inline-block" : "none";
+    //     placeList.style.display = computedStyle.display !== "block" ? "inline-block" : "none";
         // if (placeList.style.display === "" || placeList.style.display === "inline-block") {
         //     placeList.style.display = "none";
         // } else {
         //     placeList.style.display = "inline-block";
         // }
-    };
+    //};
 
     // Filter markers per user input
     // Credit http://codepen.io/prather-mcs/pen/KpjbNN?editors=001
