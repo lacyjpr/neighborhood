@@ -257,19 +257,34 @@ var ViewModel = function () {
         google.maps.event.trigger(placeItem.marker, 'click');
     };
 
+    // Toggle the nav elements
+    // credit https://discussions.udacity.com/t/toggle-list-button-weirdness/40245/2
+    self.navToggle = function() {
+        var navElements = document.getElementById('nav');
+        var elem = document.getElementById('nav');
+        var computedStyle = window.getComputedStyle(elem, null);
+
+        console.count("navToggle clicked");
+        console.log(navElements);
+        console.log("navElements style display: " + navElements.style.display);
+        console.log("computed style: " + computedStyle.display);
+
+        navElements.style.display = computedStyle.display !== "block" || computedStyle.display === "inline-block" ? "inline-block" : "none";
+    };
+
     // Toggle the nav elements when the hamburger menu is clicked
     // Credit http://stackoverflow.com/questions/29592717/i-am-trying-to-hide-show-menu-from-an-aimg-with-jquery
-    $("#hamburger").click(function() {
-        $("#nav").toggle();
-    });
+    // $("#hamburger").click(function() {
+    //     $("#nav").toggle();
+    // });
 
     // Hide the nav elements when the user clicks outside
     // Credit http://stackoverflow.com/questions/11545518/hide-a-div-when-clicked-outside-of-it
-    $(document).click(function() {
-        if( this.id != 'nav' || 'hamburger') {
-        $("#nav").hide();
-        }
-    });
+    // $(document).click(function() {
+    //     if( this.id != 'nav' || 'hamburger') {
+    //     $("#nav").hide();
+    //     }
+    // });
 
     // Toggle the place list
     // credit https://discussions.udacity.com/t/toggle-list-button-weirdness/40245/2
