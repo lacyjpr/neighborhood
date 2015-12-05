@@ -22,6 +22,7 @@ https://discussions.udacity.com/t/viewmodel-and-callback-help/39525
 https://discussions.udacity.com/t/having-trouble-accessing-data-outside-an-ajax-request/39072
 https://discussions.udacity.com/t/map-only-taking-half-the-screen/38989
 https://discussions.udacity.com/t/foursquare-attribution/38907
+https://discussions.udacity.com/t/toggle-list-button-weirdness/40245/2
 https://www.udacity.com/course/viewer#!/c-ud989-nd/l-3406489055/e-3464818693/m-3464818694
 https://github.com/kacymckibben/project-5-app.git
 https://github.com/Pooja0131/FEND-Neighbourhood-Project5a/blob/master/js/app.js
