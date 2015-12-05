@@ -269,7 +269,7 @@ var ViewModel = function () {
         console.log("navElements style display: " + navElements.style.display);
         console.log("computed style: " + computedStyle.display);
 
-        navElements.style.display = computedStyle.display !== "block" ? "inline-block" : "none";
+        navElements.style.display = computedStyle.display !== "block" ? "block" : "none";
     };
 
     // Toggle the nav elements when the hamburger menu is clicked
@@ -280,11 +280,11 @@ var ViewModel = function () {
 
     // Hide the nav elements when the user clicks outside
     // Credit http://stackoverflow.com/questions/11545518/hide-a-div-when-clicked-outside-of-it
-    // $(document).click(function() {
-    //     if( this.id != 'nav' || 'hamburger') {
-    //     $("#nav").hide();
-    //     }
-    // });
+    $(document).click(function() {
+        if( this.id != 'nav' || 'hamburger') {
+        $("#nav").hide();
+        }
+    });
 
     // Toggle the place list
     // credit https://discussions.udacity.com/t/toggle-list-button-weirdness/40245/2
