@@ -149,8 +149,6 @@ var ViewModel = function () {
         maxWidth: 200,
     });
 
-    infowindow.setZIndex(999999);
-
     // Initialize marker
     var marker;
 
@@ -235,7 +233,6 @@ var ViewModel = function () {
                         placeItem.marker.setAnimation(null);
                     }, 500);
                     infowindow.setContent(contentString);
-                    infowindow.setZIndex(999999);
                 });
             },
             // Alert the user on error. Set messages in the DOM and infowindow
