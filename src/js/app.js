@@ -146,8 +146,10 @@ var ViewModel = function () {
 
     // Initialize the infowindow
     var infowindow = new google.maps.InfoWindow({
-        maxWidth: 200
+        maxWidth: 200,
     });
+
+    infowindow.setZIndex(999999);
 
     // Initialize marker
     var marker;
@@ -214,7 +216,7 @@ var ViewModel = function () {
                 // Credit https://discussions.udacity.com/t/trouble-with-infowindows-and-contentstring/39853/14
 
                 // Content of the infowindow
-                var contentString = '<h4>' + placeItem.name() + '</h4><div id="pic"><img src="' +
+                var contentString = '<div id="iWindow"><h4>' + placeItem.name() + '</h4><div id="pic"><img src="' +
                         placeItem.photoPrefix() + '110x110' + placeItem.photoSuffix() +
                         '" alt="Image Location"></div><p>Information from Foursquare:</p><p>' +
                         placeItem.phone() + '</p><p>' + placeItem.address() + '</p><p>' +
@@ -222,7 +224,7 @@ var ViewModel = function () {
                         '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() +
                         '</a></p><p><a target="_blank" href=' + placeItem.canonicalUrl() +
                         '>Foursquare Page</a></p><p><a target="_blank" href=https://www.google.com/maps/dir/Current+Location/' +
-                        placeItem.lat() + ',' + placeItem.lng() + '>Directions</a></p>';
+                        placeItem.lat() + ',' + placeItem.lng() + '>Directions</a></p></div>';
 
                 // Add infowindows credit http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
                 google.maps.event.addListener(placeItem.marker, 'click', function () {
@@ -233,6 +235,7 @@ var ViewModel = function () {
                         placeItem.marker.setAnimation(null);
                     }, 500);
                     infowindow.setContent(contentString);
+                    infowindow.setZIndex(999999);
                 });
             },
             // Alert the user on error. Set messages in the DOM and infowindow
