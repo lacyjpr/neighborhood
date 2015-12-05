@@ -17,10 +17,22 @@ body {
   width: 20%;
 }
 
-#search {
+#hamburger {
   position: fixed;
   left: 5%;
   top: 50px;
+  width: 40px;
+}
+
+#hamburger svg {
+  width: 40px;
+  fill: #000;
+}
+
+#search {
+  position: fixed;
+  left: 5%;
+  top: 90px;
   height: 30px;
   width: 20%;
   font-size: 15px;
@@ -28,7 +40,7 @@ body {
 
 #toggleList {
   position: fixed;
-  top: 90px;
+  top: 130px;
   left: 5%;
   height: 30px;
   width: 20%;
@@ -41,7 +53,7 @@ body {
   position: fixed;
   height:35%;
   overflow: auto;
-  top: 125px;
+  top: 165px;
   left: 5%;
   width: 20%;
   background-color: #fff;
