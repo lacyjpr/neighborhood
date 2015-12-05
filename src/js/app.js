@@ -259,19 +259,17 @@ var ViewModel = function () {
 
     // Toggle the nav elements when the hamburger menu is clicked
     // Credit http://stackoverflow.com/questions/29592717/i-am-trying-to-hide-show-menu-from-an-aimg-with-jquery
-
-    $("#nav").hide();
     $("#hamburger").click(function() {
         $("#nav").toggle();
     });
 
     // Hide the nav elements when the user clicks outside
     // Credit http://stackoverflow.com/questions/11545518/hide-a-div-when-clicked-outside-of-it
-    // $(document).click(function() {
-    //     if( this.id != 'nav' || 'hamburger') {
-    //     $("#nav").hide();
-    //     }
-    // });
+    $(document).click(function() {
+        if( this.id != 'nav' || 'hamburger') {
+        $("#nav").hide();
+        }
+    });
 
     // Toggle the place list
     // credit https://discussions.udacity.com/t/toggle-list-button-weirdness/40245/2
