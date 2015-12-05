@@ -17,31 +17,32 @@ body {
   width: 20%;
 }
 
-#search {
+#hamburger {
   position: fixed;
   left: 5%;
   top: 50px;
+  width: 40px;
+}
+
+svg {
+  width: 40px;
+  fill: #000;
+}
+
+#search {
+  position: fixed;
+  left: 5%;
+  top: 90px;
   height: 30px;
   width: 20%;
   font-size: 15px;
 }
 
-#toggleList {
-  position: fixed;
-  top: 90px;
-  left: 5%;
-  height: 30px;
-  width: 20%;
-  font-size: 12px;
-  background-color: #fff;
-}
-
 #list-view {
-  display: inline-block;
   position: fixed;
   height:35%;
   overflow: auto;
-  top: 125px;
+  top: 130px;
   left: 5%;
   width: 20%;
   background-color: #fff;
@@ -64,6 +65,14 @@ body {
       display: none;
     }
 
+  #hamburger {
+    position: fixed;
+    right: 5%;
+    top: 50px;
+    width: 40px;
+  }
+
+
     #pageTitle {
     position: fixed;
     top: 0px;
@@ -75,30 +84,18 @@ body {
     #search {
     position: fixed;
     left: 5%;
-    top: 30px;
+    top: 90px;
     height: 30px;
     width: 20%;
     font-size: 8px;
     z-index: 0;
   }
 
-    #toggleList {
-    position: fixed;
-    top: 75px;
-    left: 5%;
-    height: 30px;
-    width: 20%;
-    font-size: 8px;
-    background-color: #fff;
-    z-index: 0;
-    }
-
     #list-view {
-    display: none;
     position: fixed;
     height:35%;
     overflow: auto;
-    top: 115px;
+    top: 130px;
     left: 20px;
     width: 20%;
     background-color: #fff;

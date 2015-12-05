@@ -13,13 +13,19 @@
 
 	<body>
 		<div id="map"></div>
-			<div id="pageTitle"><h2>Coffee In Newport, OR</h2></div>
-			<input id="search" placeholder="Search by name" data-bind="textInput: userInput, event: {keyup: filterMarkers}">
-			<input id="toggleList" type=button value="Toggle Places" data-bind="click: listToggle">
-			<div id="list-holder">
-				<ul id="list-view" data-bind="foreach: visible">
-					<li id="list-name" data-bind="text: name, click: $parent.showInfo"></li>
-				</ul>
+			<div id="pageTitle"><h2>Coffee In Newport</h2></div>
+			<div id="hamburger">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+				<path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/>
+				</svg>
+			<div>
+			<div id="nav">
+				<input id="search" placeholder="Search by name" data-bind="textInput: userInput, event: {keyup: filterMarkers}">
+				<div id="list-holder">
+					<ul id="list-view" data-bind="foreach: visible">
+						<li id="list-name" data-bind="text: name, click: $parent.showInfo"></li>
+					</ul>
+				</div>
 			</div>
 		<div id="error"></div>
 
