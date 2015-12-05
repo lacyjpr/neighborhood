@@ -67,7 +67,7 @@ svg {
 
   #hamburger {
     position: fixed;
-    right: 5%;
+    left: 5%;
     top: 50px;
     width: 40px;
   }
