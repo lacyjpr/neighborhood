@@ -13,7 +13,8 @@ body {
 #pageTitle{
   position: fixed;
   top: 50px;
-  width: 100%;
+  left: 20px;
+  width: 20%;
 }
 
 #search {
