@@ -214,9 +214,9 @@ var ViewModel = function () {
                 // Credit https://discussions.udacity.com/t/trouble-with-infowindows-and-contentstring/39853/14
 
                 // Content of the infowindow
-                var contentString = '<h4>' + placeItem.name() + '</h4><img src="' +
+                var contentString = '<h4>' + placeItem.name() + '</h4><div id="pic"><img src="' +
                         placeItem.photoPrefix() + '110x110' + placeItem.photoSuffix() +
-                        '" alt="Image Location"><p>Information from Foursquare:</p><p>' +
+                        '" alt="Image Location"></div><p>Information from Foursquare:</p><p>' +
                         placeItem.phone() + '</p><p>' + placeItem.address() + '</p><p>' +
                         placeItem.description() + '</p><p>Rating: ' + placeItem.rating() +
                         '</p><p><a href=' + placeItem.url() + '>' + placeItem.url() +

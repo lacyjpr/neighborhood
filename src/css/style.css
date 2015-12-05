@@ -56,7 +56,11 @@ body {
       font-size: 10px;
     }
 
-    #pageTitle{
+    #pic {
+      display: none;
+    }
+
+    #pageTitle {
     position: fixed;
     top: 0px;
     width: 20%;
