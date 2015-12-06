@@ -21,6 +21,8 @@ body {
   position: fixed;
   left: 5%;
   top: 45px;
+  /*right: 0;
+  top: 0;*/
   width: 40px;
 }
 
@@ -51,7 +53,7 @@ svg {
   font-size: 15px;
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 650px) {
 
     h2 {
       font-size: 10px;
@@ -67,10 +69,10 @@ svg {
 
     #hamburger {
     position: fixed;
-    left: 0;
+    right: 0;
     top: 0;
     width: 40px;
-  }
+    }
 
     #pageTitle {
     position: fixed;
