@@ -255,51 +255,34 @@ var ViewModel = function () {
     // Activate the appropriate marker when the user clicks a list item
     self.showInfo = function (placeItem) {
         google.maps.event.trigger(placeItem.marker, 'click');
+        self.hideNav();
     };
+
+    self.isNavOpen = ko.observable(true),
+    self.hideNav = function() {
+        self.isNavOpen(false);
+        return true; // allow click to pass through
+    },
+    self.toggleNav = function() {
+        var oppositeNavState = !(self.isNavOpen());
+        self.isNavOpen(oppositeNavState);
+    }
+
 
     // Toggle the nav elements
     // credit https://discussions.udacity.com/t/toggle-list-button-weirdness/40245/2
-    self.navToggle = function() {
-        var navElements = document.getElementById('nav');
-        var elem = document.getElementById('nav');
-        var computedStyle = window.getComputedStyle(elem, null);
-
-        console.count("navToggle clicked");
-        console.log(navElements);
-        console.log("navElements style display: " + navElements.style.display);
-        console.log("computed style: " + computedStyle.display);
-
-        navElements.style.display = computedStyle.display !== "block" ? "block" : "none";
-    };
-
-    // Toggle the nav elements when the hamburger menu is clicked
-    // Credit http://stackoverflow.com/questions/29592717/i-am-trying-to-hide-show-menu-from-an-aimg-with-jquery
-    // $("#hamburger").click(function() {
-    //     $("#nav").toggle();
-    // });
-
-    // Hide the nav elements when the user clicks outside
-    // Credit http://stackoverflow.com/questions/11545518/hide-a-div-when-clicked-outside-of-it
-    // $(document).click(function() {
-    //     if( this.id != 'nav' || 'hamburger') {
-    //     $("#nav").hide();
-    //     }
-    // });
-
-    // Toggle the place list
-    // credit https://discussions.udacity.com/t/toggle-list-button-weirdness/40245/2
-    // self.listToggle = function() {
-    //     var placeList = document.getElementById('list-view');
-    //     var elem = document.getElementById('list-view');
+    // self.navToggle = function() {
+    //     var navElements = document.getElementById('nav');
+    //     var elem = document.getElementById('nav');
     //     var computedStyle = window.getComputedStyle(elem, null);
 
-    //     placeList.style.display = computedStyle.display !== "block" ? "inline-block" : "none";
-        // if (placeList.style.display === "" || placeList.style.display === "inline-block") {
-        //     placeList.style.display = "none";
-        // } else {
-        //     placeList.style.display = "inline-block";
-        // }
-    //};
+    //     console.count("navToggle clicked");
+    //     console.log(navElements);
+    //     console.log("navElements style display: " + navElements.style.display);
+    //     console.log("computed style: " + computedStyle.display);
+
+    //     navElements.style.display = computedStyle.display !== "block" ? "block" : "none";
+    // };
 
     // Filter markers per user input
     // Credit http://codepen.io/prather-mcs/pen/KpjbNN?editors=001
