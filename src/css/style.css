@@ -19,8 +19,8 @@ body {
 
 #hamburger {
   position: fixed;
-  right: 0;
-  top: 0;
+  left: 5%;
+  top: 45px;
   width: 40px;
 }
 
@@ -32,9 +32,9 @@ svg {
 #search {
   position: fixed;
   left: 5%;
-  top: 45px;
+  top: 85px;
   height: 30px;
-  width: 20%;
+  width: 19.5%;
   font-size: 15px;
 }
 
@@ -42,7 +42,7 @@ svg {
   position: fixed;
   height:35%;
   overflow: auto;
-  top: 85px;
+  top: 125px;
   left: 5%;
   width: 20%;
   background-color: #fff;
@@ -67,7 +67,7 @@ svg {
 
     #hamburger {
     position: fixed;
-    right: 0;
+    left: 0;
     top: 0;
     width: 40px;
   }
