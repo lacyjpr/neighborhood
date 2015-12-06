@@ -258,6 +258,8 @@ var ViewModel = function () {
         self.hideNav();
     };
 
+    // Toggle nav elements when clicking the map
+    // Credit http://codepen.io/SittingFox/pen/NGwZvm?editors=101
     self.isNavOpen = ko.observable(true),
     self.hideNav = function() {
         self.isNavOpen(false);
