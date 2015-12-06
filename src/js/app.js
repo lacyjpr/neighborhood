@@ -280,11 +280,11 @@ var ViewModel = function () {
 
     // Hide the nav elements when the user clicks outside
     // Credit http://stackoverflow.com/questions/11545518/hide-a-div-when-clicked-outside-of-it
-    $(document).click(function() {
-        if( this.id != 'nav' || 'hamburger') {
-        $("#nav").hide();
-        }
-    });
+    // $(document).click(function() {
+    //     if( this.id != 'nav' || 'hamburger') {
+    //     $("#nav").hide();
+    //     }
+    // });
 
     // Toggle the place list
     // credit https://discussions.udacity.com/t/toggle-list-button-weirdness/40245/2
