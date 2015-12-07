@@ -28,6 +28,7 @@ https://github.com/kacymckibben/project-5-app.git
 https://github.com/Pooja0131/FEND-Neighbourhood-Project5a/blob/master/js/app.js
 http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
 http://codepen.io/prather-mcs/pen/KpjbNN?editors=001
+http://codepen.io/SittingFox/pen/NGwZvm?editors=101
 https://discussions.udacity.com/t/handling-google-maps-in-async-and-fallback/34282
 
 
