@@ -268,7 +268,7 @@ var ViewModel = function () {
     console.log(self.viewPortWidth());
     this.navStatus = ko.pureComputed (function () {
         console.log(self.viewPortWidth());
-        return self.viewPortWidth() > 650 ? 'navOpen' : 'nav';
+        return self.viewPortWidth() > 650 ? 'navOpen' : 'nav data-bind="visible: isNavOpen(), click: null, clickBubble: false"';
         }, this);
 
     //data-bind="visible: isNavOpen(), click: null, clickBubble: false"';
