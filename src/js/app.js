@@ -127,6 +127,8 @@ var Place = function (data) {
     this.contentString = ko.observable('');
 };
 
+// this.viewPortWidth = ko.observable;
+
 // ViewModel
 var ViewModel = function () {
     "use strict";
@@ -260,13 +262,20 @@ var ViewModel = function () {
 
     // Toggle the nav class based on viewport width
     // Credit Stacy https://discussions.udacity.com/t/any-way-to-reduce-infowindow-content-on-mobile/40352/25
-    this.viewPortWidth = ko.observable;
-    // Get the viewport width Credit http://stackoverflow.com/questions/1248081/get-the-browser-viewport-dimensions-with-javascript
-    this.viewPortWidth(Math.max(document.documentElement.clientWidth, window.innerWidth || 0));
-    this.navStatus = ko.pureComputed (function () {
-        return self.viewportWidth > 650 ? 'navOpen' : 'nav data-bind="visible: isNavOpen(), click: null, clickBubble: false"';
-    }, self);
 
+    // Get the viewport width Credit http://stackoverflow.com/questions/1248081/get-the-browser-viewport-dimensions-with-javascript
+    self.viewPortWidth = ko.observable(window.outerWidth);
+    console.log(self.viewPortWidth());
+    this.navStatus = ko.pureComputed (function () {
+        // return self.viewPortWidth > 650 ? 'navOpen' : 'nav';
+        if (self.viewPortWidth > 650) {
+            return 'navOpen';
+        } else {
+            return 'nav'
+        }
+    }, this);
+
+    //data-bind="visible: isNavOpen(), click: null, clickBubble: false"';
 
     // Toggle nav elements when clicking the map
     // Credit http://codepen.io/SittingFox/pen/NGwZvm?editors=101
