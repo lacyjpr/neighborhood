@@ -19,7 +19,8 @@
 					<path d="M2 6h20v3H2zm0 5h20v3H2zm0 5h20v3H2z"/>
 					</svg>
 				</div>
-			<div data-bind="css: navStatus">
+			<!-- <div class="nav" data-bind="css: { navOpen: viewPortWidth() > 650 }, visible: isNavOpen(), click: null, clickBubble: false"> -->
+				<div data-bind="css: navStatus, visible: isNavOpen(), click: null, clickBubble: false">
 				<!-- <div class="nav" data-bind="visible: isNavOpen(), click: null, clickBubble: false"> -->
 				<input id="search" placeholder="Search by name" data-bind="textInput: userInput, event: {keyup: filterMarkers}">
 				<div id="list-holder">
