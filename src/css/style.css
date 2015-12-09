@@ -17,24 +17,24 @@ body {
   width: 20%;
 }
 
-#hamburger {
+/*#hamburger {
   position: fixed;
   left: 5%;
   top: 45px;
-  /*right: 0;
-  top: 0;*/
+  right: 0;
+  top: 0;
   width: 40px;
 }
 
 svg {
   width: 40px;
   fill: #000;
-}
+}*/
 
 #search {
   position: fixed;
   left: 5%;
-  top: 85px;
+  top: 45px;
   height: 30px;
   width: 19.5%;
   font-size: 15px;
@@ -44,7 +44,7 @@ svg {
   position: fixed;
   height: 35%;
   overflow: auto;
-  top: 125px;
+  top: 85px;
   left: 5%;
   width: 20%;
   background-color: #fff;
@@ -80,6 +80,11 @@ svg {
     right: 0;
     top: 0;
     width: 40px;
+    }
+
+    svg {
+    width: 40px;
+    fill: #000;
     }
 
     #pageTitle {
