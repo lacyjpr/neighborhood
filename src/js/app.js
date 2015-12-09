@@ -270,12 +270,12 @@ var ViewModel = function () {
 
     self.hideElements = function (toggleNav) {
         self.toggleNav(true);
-        console.log(self.toggleNav());
+        console.log("hideElements called");
     };
 
     self.showElements = function (toggleNav) {
         self.toggleNav(false);
-        console.log(self.toggleNav());
+        console.log("showElements called");
     };
 
     //data-bind="visible: isNavOpen(), click: null, clickBubble: false"';
