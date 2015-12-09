@@ -257,33 +257,40 @@ var ViewModel = function () {
     // Activate the appropriate marker when the user clicks a list item
     self.showInfo = function (placeItem) {
         google.maps.event.trigger(placeItem.marker, 'click');
-        self.hideNav();
+        self.hideElements();
     };
 
-    // Toggle the nav class based on viewport width
+    // Toggle the nav class based style
     // Credit Stacy https://discussions.udacity.com/t/any-way-to-reduce-infowindow-content-on-mobile/40352/25
-
-    // Get the viewport width Credit http://stackoverflow.com/questions/1248081/get-the-browser-viewport-dimensions-with-javascript
-    self.viewPortWidth = ko.observable(window.outerWidth);
-    console.log(self.viewPortWidth());
+    self.toggleNav = ko.observable(false);
+    console.log(self.toggleNav());
     this.navStatus = ko.pureComputed (function () {
-        console.log(self.viewPortWidth());
-        return self.viewPortWidth() > 650 ? 'navOpen' : 'nav data-bind="visible: isNavOpen(), click: null, clickBubble: false"';
+        return self.toggleNav() === false ? 'nav' : 'navClosed';
         }, this);
+
+    self.hideElements = function (toggleNav) {
+        self.toggleNav(true);
+        console.log(self.toggleNav());
+    };
+
+    self.showElements = function (toggleNav) {
+        self.toggleNav(false);
+        console.log(self.toggleNav());
+    };
 
     //data-bind="visible: isNavOpen(), click: null, clickBubble: false"';
 
     // Toggle nav elements when clicking the map
     // Credit http://codepen.io/SittingFox/pen/NGwZvm?editors=101
-    self.isNavOpen = ko.observable(true),
-    self.hideNav = function() {
-        self.isNavOpen(false);
-        return true; // allow click to pass through
-    },
-    self.toggleNav = function() {
-        var oppositeNavState = !(self.isNavOpen());
-        self.isNavOpen(oppositeNavState);
-    };
+    // self.isNavOpen = ko.observable(true),
+    // self.hideNav = function() {
+    //     self.isNavOpen(false);
+    //     return true; // allow click to pass through
+    // },
+    // self.toggleNav = function() {
+    //     var oppositeNavState = !(self.isNavOpen());
+    //     self.isNavOpen(oppositeNavState);
+    // };
 
 
     // Toggle the nav elements

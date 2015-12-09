@@ -89,6 +89,10 @@ svg {
     left: 5%;
     }
 
+    .navClosed {
+      display: none;
+    }
+
     #search {
     position: fixed;
     left: 5%;
