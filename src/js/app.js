@@ -268,11 +268,14 @@ var ViewModel = function () {
 
     self.hideElements = function (toggleNav) {
         self.toggleNav(true);
+        // Allow default action
+        // Credit Stacy https://discussions.udacity.com/t/click-binding-blocking-marker-clicks/35398/2
         return true;
     };
 
     self.showElements = function (toggleNav) {
         self.toggleNav(false);
+        return true;
     };
 
     // Filter markers per user input
