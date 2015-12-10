@@ -26,6 +26,7 @@ Alternatively, you can simply view the project here: http://lacyjpr.github.io/ne
 * https://www.udacity.com/course/viewer#!/c-ud989-nd/l-3406489055/e-3464818693/m-3464818694
 * https://discussions.udacity.com/t/handling-google-maps-in-async-and-fallback/34282
 * https://discussions.udacity.com/t/any-way-to-reduce-infowindow-content-on-mobile/40352/31
+* https://discussions.udacity.com/t/click-binding-blocking-marker-clicks/35398/2
 * https://github.com/kacymckibben/project-5-app.git
 * https://github.com/Pooja0131/FEND-Neighbourhood-Project5a/blob/master/js/app.js
 * http://you.arenot.me/2010/06/29/google-maps-api-v3-0-multiple-markers-multiple-infowindows/
