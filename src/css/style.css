@@ -60,6 +60,14 @@ svg {
   width: 20%;
 }
 
+li:after {
+content: ", ";
+}
+
+li:last-child:after {
+content: "";
+}
+
 @media only screen and (max-width: 650px) {
 
     h2 {
