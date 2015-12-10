@@ -17,20 +17,6 @@ body {
   width: 20%;
 }
 
-/*#hamburger {
-  position: fixed;
-  left: 5%;
-  top: 45px;
-  right: 0;
-  top: 0;
-  width: 40px;
-}
-
-svg {
-  width: 40px;
-  fill: #000;
-}*/
-
 #search {
   position: fixed;
   left: 5%;
@@ -60,6 +46,7 @@ svg {
   width: 20%;
 }
 
+/*Credit https://gist.github.com/jedsundwall/586144*/
 li:after {
 content: ", ";
 }
