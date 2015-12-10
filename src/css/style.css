@@ -17,6 +17,10 @@ body {
   width: 20%;
 }
 
+svg {
+  display: none;
+}
+
 #search {
   position: fixed;
   left: 5%;
