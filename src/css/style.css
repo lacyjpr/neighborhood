@@ -82,6 +82,7 @@ content: "";
     }
 
     svg {
+    display: block;
     width: 40px;
     fill: #000;
     }
