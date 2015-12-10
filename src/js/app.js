@@ -68,8 +68,6 @@ var locations = [
     }
 ];
 
-// Initialize the map
-
 // Prevent Roboto from loading for performance
 // Credit http://stackoverflow.com/questions/25523806/google-maps-v3-prevent-api-from-loading-roboto-font
 // var head = document.getElementsByTagName('head')[0];
@@ -89,6 +87,7 @@ var locations = [
 //     insertBefore.call(head, newElement, referenceElement);
 // };
 
+// Initialize the map
 var map;
 function initMap() {
     "use strict";
@@ -263,50 +262,17 @@ var ViewModel = function () {
     // Toggle the nav class based style
     // Credit Stacy https://discussions.udacity.com/t/any-way-to-reduce-infowindow-content-on-mobile/40352/25
     self.toggleNav = ko.observable(false);
-    console.log(self.toggleNav());
     this.navStatus = ko.pureComputed (function () {
         return self.toggleNav() === false ? 'nav' : 'navClosed';
         }, this);
 
     self.hideElements = function (toggleNav) {
         self.toggleNav(true);
-        console.log("hideElements called");
     };
 
     self.showElements = function (toggleNav) {
         self.toggleNav(false);
-        console.log("showElements called");
     };
-
-    //data-bind="visible: isNavOpen(), click: null, clickBubble: false"';
-
-    // Toggle nav elements when clicking the map
-    // Credit http://codepen.io/SittingFox/pen/NGwZvm?editors=101
-    // self.isNavOpen = ko.observable(true),
-    // self.hideNav = function() {
-    //     self.isNavOpen(false);
-    //     return true; // allow click to pass through
-    // },
-    // self.toggleNav = function() {
-    //     var oppositeNavState = !(self.isNavOpen());
-    //     self.isNavOpen(oppositeNavState);
-    // };
-
-
-    // Toggle the nav elements
-    // credit https://discussions.udacity.com/t/toggle-list-button-weirdness/40245/2
-    // self.navToggle = function() {
-    //     var navElements = document.getElementById('nav');
-    //     var elem = document.getElementById('nav');
-    //     var computedStyle = window.getComputedStyle(elem, null);
-
-    //     console.count("navToggle clicked");
-    //     console.log(navElements);
-    //     console.log("navElements style display: " + navElements.style.display);
-    //     console.log("computed style: " + computedStyle.display);
-
-    //     navElements.style.display = computedStyle.display !== "block" ? "block" : "none";
-    // };
 
     // Filter markers per user input
     // Credit http://codepen.io/prather-mcs/pen/KpjbNN?editors=001
