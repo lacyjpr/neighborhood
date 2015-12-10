@@ -17,10 +17,24 @@ body {
   width: 20%;
 }
 
-#search {
+#hamburger {
   position: fixed;
   left: 5%;
   top: 45px;
+  /*right: 0;
+  top: 0;*/
+  width: 40px;
+}
+
+svg {
+  width: 40px;
+  fill: #000;
+}
+
+#search {
+  position: fixed;
+  left: 5%;
+  top: 85px;
   height: 30px;
   width: 19.5%;
   font-size: 15px;
@@ -30,7 +44,7 @@ body {
   position: fixed;
   height: 35%;
   overflow: auto;
-  top: 85px;
+  top: 125px;
   left: 5%;
   width: 20%;
   background-color: #fff;
@@ -44,15 +58,6 @@ body {
   top: 350px;
   left: 5%;
   width: 20%;
-}
-
-/*Credit https://gist.github.com/jedsundwall/586144*/
-li:after {
-content: ", ";
-}
-
-li:last-child:after {
-content: "";
 }
 
 @media only screen and (max-width: 650px) {
@@ -75,11 +80,6 @@ content: "";
     right: 0;
     top: 0;
     width: 40px;
-    }
-
-    svg {
-    width: 40px;
-    fill: #000;
     }
 
     #pageTitle {
