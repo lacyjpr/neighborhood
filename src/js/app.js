@@ -268,6 +268,7 @@ var ViewModel = function () {
 
     self.hideElements = function (toggleNav) {
         self.toggleNav(true);
+        return true;
     };
 
     self.showElements = function (toggleNav) {
