@@ -14,7 +14,7 @@ body {
   position: fixed;
   top: 0px;
   left: 5%;
-  width: 20%;
+  width: 50%;
 }
 
 svg {
@@ -32,7 +32,7 @@ svg {
 
 #list-view {
   position: fixed;
-  height: 35%;
+  height: 27%;
   overflow: auto;
   top: 85px;
   left: 5%;
@@ -62,7 +62,7 @@ content: "";
 @media only screen and (max-width: 650px) {
 
     h2 {
-      font-size: 10px;
+      font-size: 20px;
     }
 
     /*#iWindow {
@@ -90,7 +90,7 @@ content: "";
     #pageTitle {
     position: fixed;
     top: 0px;
-    width: 30%;
+    width: 70%;
     left: 5%;
     }
 
@@ -109,10 +109,10 @@ content: "";
 
     #list-view {
     position: fixed;
-    height:35%;
+    height:27%;
     overflow: auto;
     top: 80px;
-    left: 20px;
+    left: 5%;
     width: 30%;
     background-color: #fff;
     margin: 0;
