@@ -62,7 +62,7 @@ content: "";
 @media only screen and (max-width: 650px) {
 
     h2 {
-      font-size: 20px;
+      font-size: 15px;
     }
 
     /*#iWindow {
@@ -90,7 +90,7 @@ content: "";
     #pageTitle {
     position: fixed;
     top: 0px;
-    width: 70%;
+    width: 30%;
     left: 5%;
     }
 
