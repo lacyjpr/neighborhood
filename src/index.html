@@ -17,7 +17,7 @@
       <div class="row">
         <div class="col-xs-4 col-sm-3 col-md-3">
           <h3>Coffee in Newport, Oregon</h3>
-          <input type="search" placeholder="Search by name" data-bind="textInput: userInput, event: {keyup: filterMarkers}">
+          <input size="10" type="search" placeholder="Search" data-bind="textInput: userInput, event: {keyup: filterMarkers}">
           <div id="list-holder">
             <ul id="list-view" data-bind="foreach: visible">
               <li id="list-name" data-bind="text: name, click: $parent.showInfo"></li>
