@@ -18,11 +18,15 @@ input {
 
 main,
 .row,
+.col-xs-8,
+.col-sm9, 
 .col-md-9 {
   height: 100%;
   background-color: #000;
 }
 
+.col-xs-4, 
+.col-sm-3, 
 .col-md-3 {
   background-color: #000;
   color: #fff;
