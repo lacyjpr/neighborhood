@@ -211,6 +211,7 @@ var ViewModel = function () {
                         placeItem.marker.setAnimation(null);
                     }, 500);
                     infowindow.setContent(contentString);
+                    map.setCenter(placeItem.marker.getPosition());
                 });
             },
             // Alert the user on error. Set messages in the DOM and infowindow
