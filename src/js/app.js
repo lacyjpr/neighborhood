@@ -68,25 +68,6 @@ var locations = [
     }
 ];
 
-// Prevent Roboto from loading for performance
-// Credit http://stackoverflow.com/questions/25523806/google-maps-v3-prevent-api-from-loading-roboto-font
-// var head = document.getElementsByTagName('head')[0];
-
-// Save the original method
-// var insertBefore = head.insertBefore;
-
-// Replace it!
-// head.insertBefore = function (newElement, referenceElement) {
-
-//     if (newElement.href && newElement.href.indexOf('https://fonts.googleapis.com/css?family=Roboto') === 0) {
-
-//         console.info('Prevented Roboto from loading!');
-//         return;
-//     }
-
-//     insertBefore.call(head, newElement, referenceElement);
-// };
-
 // Initialize the map
 var map;
 function initMap() {
@@ -103,7 +84,7 @@ function initMap() {
 // Alert the user if google maps isn't working
 function googleError() {
     "use strict";
-    document.getElementById('map').innerHTML = "<h2>Google Maps is not loading. Please try refreshing the page later.</h2>";
+    document.getElementById('error').innerHTML = "<h2>Google Maps is not loading. Please try refreshing the page later.</h2>";
 }
 
 // Place constructor
@@ -125,8 +106,6 @@ var Place = function (data) {
     this.photoSuffix = ko.observable('');
     this.contentString = ko.observable('');
 };
-
-// this.viewPortWidth = ko.observable;
 
 // ViewModel
 var ViewModel = function () {
@@ -173,8 +152,6 @@ var ViewModel = function () {
             success: function (data) {
                 // Make results easier to handle
                 var result = data.response.venue;
-
-                // placeItem.name(result.name);
 
                 // The following lines handle inconsistent results from Foursquare
                 // Check each result for properties, if the property exists,
